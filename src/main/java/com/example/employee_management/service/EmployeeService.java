@@ -1,7 +1,6 @@
 package com.example.employee_management.service;
 
 import com.example.employee_management.entity.Employee;
-import com.example.employee_management.entity.User;
 import com.example.employee_management.exception.ResourceNotFoundException;
 import com.example.employee_management.repository.EmployeeRepository;
 import com.example.employee_management.repository.UserRepository;
@@ -56,9 +55,15 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    public void deleteEmployee(Long id) {
+    public Employee deleteEmployee(Long id) {
         Employee employee = getEmployeeById(id);
+
+        // Delete the associated User login account if it exists
+        userRepository.findByEmail(employee.getEmail())
+                .ifPresent(user -> userRepository.delete(user));
+
         employeeRepository.delete(employee);
+        return employee;
     }
 
     public boolean isOwner(String email, Long employeeId) {
@@ -69,20 +74,6 @@ public class EmployeeService {
 
     public Employee getEmployeeByEmail(String email) {
         return employeeRepository.findByEmail(email)
-                .orElseGet(() -> {
-                    // Sync profile for existing user
-                    User user = userRepository.findByEmail(email)
-                            .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + email));
-
-                    String[] nameParts = user.getName().split(" ", 2);
-                    Employee employee = Employee.builder()
-                            .firstName(nameParts[0])
-                            .lastName(nameParts.length > 1 ? nameParts[1] : "")
-                            .email(user.getEmail())
-                            .department("To be defined")
-                            .salary(0.0)
-                            .build();
-                    return employeeRepository.save(employee);
-                });
+                .orElseThrow(() -> new ResourceNotFoundException("Employee profile not found or has been deleted."));
     }
 }

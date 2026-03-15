@@ -81,10 +81,16 @@ public class EmployeeController {
     }
 
     // ✅ DELETE
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or (hasRole('USER') and @employeeService.isOwner(authentication.name, #id))")
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteEmployee(@PathVariable Long id) {
-        employeeService.deleteEmployee(id);
-        return ResponseEntity.ok("Employee deleted successfully");
+    public ResponseEntity<String> deleteEmployee(@PathVariable Long id,
+            org.springframework.security.core.Authentication authentication) {
+        Employee deletedEmployee = employeeService.deleteEmployee(id);
+
+        if (deletedEmployee.getEmail().equalsIgnoreCase(authentication.getName())) {
+            return ResponseEntity.ok("You deleted your data successfully");
+        } else {
+            return ResponseEntity.ok("Employee deleted successfully");
+        }
     }
 }

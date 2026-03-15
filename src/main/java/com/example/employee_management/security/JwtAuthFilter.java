@@ -77,6 +77,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 response.getWriter()
                         .write("{\"error\": \"JWT EXPIRE\", \"message\": \"JWT token has expired\", \"status\": 401}");
                 return;
+            } catch (org.springframework.security.core.userdetails.UsernameNotFoundException e) {
+                System.out.println("UsernameNotFoundException: " + e.getMessage());
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.setContentType("application/json");
+                response.getWriter()
+                        .write("{\"error\": \"Unauthorized\", \"message\": \"User not found\", \"status\": 401}");
+                return;
             } catch (Exception e) {
                 System.out.println("Exception: " + e.getMessage());
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
