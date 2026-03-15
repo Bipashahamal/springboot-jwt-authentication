@@ -49,6 +49,13 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.getAllEmployees(page, size, sortBy));
     }
 
+    // ✅ GET MY PROFILE
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @GetMapping("/me")
+    public ResponseEntity<Employee> getMyProfile(org.springframework.security.core.Authentication authentication) {
+        return ResponseEntity.ok(employeeService.getEmployeeByEmail(authentication.getName()));
+    }
+
     // ✅ GET BY ID
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("/{id}")
@@ -57,7 +64,7 @@ public class EmployeeController {
     }
 
     // ✅ UPDATE
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or (hasRole('USER') and @employeeService.isOwner(authentication.name, #id))")
     @PutMapping("/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable Long id,
             @Valid @RequestBody EmployeeRequest request) {

@@ -3,6 +3,7 @@ package com.example.employee_management.controller;
 import com.example.employee_management.dto.LoginRequest;
 import com.example.employee_management.dto.RegisterRequest;
 import com.example.employee_management.entity.*;
+import com.example.employee_management.service.EmployeeService;
 import com.example.employee_management.exception.DuplicateEmailException;
 import com.example.employee_management.exception.InvalidCredentialsException;
 import com.example.employee_management.repository.UserRepository;
@@ -35,6 +36,9 @@ public class AuthController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private EmployeeService employeeService;
+
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody RegisterRequest request) {
 
@@ -54,6 +58,17 @@ public class AuthController {
         }
 
         userRepository.save(user);
+
+        // ✅ Automatically create Employee profile
+        String[] nameParts = request.getName().split(" ", 2);
+        Employee employee = Employee.builder()
+                .firstName(nameParts[0])
+                .lastName(nameParts.length > 1 ? nameParts[1] : "")
+                .email(request.getEmail())
+                .department("To be defined")
+                .salary(0.0)
+                .build();
+        employeeService.createEmployee(employee);
 
         return new ResponseEntity<>("User registered successfully!", HttpStatus.CREATED);
     }
