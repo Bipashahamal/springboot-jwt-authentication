@@ -3,7 +3,6 @@ package com.example.employee_management.exception;
 import org.springframework.http.*;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,4 +42,12 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(DuplicatePhoneNumberException.class)
+    public ResponseEntity<?> handleDuplicatePhone(DuplicatePhoneNumberException ex) {
+    return new ResponseEntity<>(
+            buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage()),
+            HttpStatus.BAD_REQUEST
+    );
+}
 }

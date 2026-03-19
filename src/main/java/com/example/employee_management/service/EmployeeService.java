@@ -4,9 +4,11 @@ import com.example.employee_management.entity.Employee;
 import com.example.employee_management.exception.ResourceNotFoundException;
 import com.example.employee_management.repository.EmployeeRepository;
 import com.example.employee_management.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 import com.example.employee_management.exception.DuplicateEmailException;
 
@@ -23,7 +25,10 @@ public class EmployeeService {
         if (employeeRepository.findByEmail(employee.getEmail()).isPresent()) {
             throw new DuplicateEmailException("Email already exists");
         }
-        return employeeRepository.save(employee);
+         // Save employee
+        Employee saved = employeeRepository.save(employee);
+
+        return saved;
     }
 
     public Page<Employee> getAllEmployees(int page, int size, String sortBy) {
@@ -75,5 +80,11 @@ public class EmployeeService {
     public Employee getEmployeeByEmail(String email) {
         return employeeRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee profile not found or has been deleted."));
+    }
+
+    public void generateMonthlyReport() {
+        List<Employee> employees = employeeRepository.findAll();
+        // Here you can generate PDF/Excel or just log info
+        System.out.println("Monthly report generated for " + employees.size() + " employees");
     }
 }

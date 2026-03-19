@@ -2,11 +2,14 @@ package com.example.employee_management.controller;
 
 import com.example.employee_management.dto.EmployeeRequest;
 import com.example.employee_management.entity.Employee;
+import com.example.employee_management.service.EmailService;
 import com.example.employee_management.service.EmployeeService;
 
 import jakarta.validation.Valid;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,11 +23,13 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+private EmailService emailService;
 
     // ✅ CREATE EMPLOYEE (ADMIN only)
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    public ResponseEntity<Employee> createEmployee(@Valid @RequestBody EmployeeRequest request) {
+    public ResponseEntity<Map<String, String>> createEmployee(@Valid @RequestBody EmployeeRequest request) {
 
         Employee employee = Employee.builder()
                 .firstName(request.getFirstName())
@@ -34,8 +39,20 @@ public class EmployeeController {
                 .salary(request.getSalary())
                 .createdAt(LocalDateTime.now())
                 .build();
+            employeeService.createEmployee(employee); 
+            // ✅ Send welcome email asynchronously
+            emailService.sendWelcomeEmail(
+            employee.getEmail(),
+            employee.getFirstName() + " " + employee.getLastName()
+    );
 
-        return ResponseEntity.ok(employeeService.createEmployee(employee));
+    // ✅ Response message for Postman
+    Map<String, String> response = new HashMap<>();
+    response.put("message", "Employee created successfully");
+    response.put("emailStatus", "Welcome email will be sent in the background");
+
+    return ResponseEntity.ok(response);
+
     }
 
     // ✅ GET ALL (ADMIN & USER)
@@ -93,4 +110,8 @@ public class EmployeeController {
             return ResponseEntity.ok("Employee deleted successfully");
         }
     }
+
+
+
+    
 }

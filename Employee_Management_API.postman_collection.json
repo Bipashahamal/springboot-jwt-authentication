@@ -2,12 +2,13 @@
   "info": {
     "_postman_id": "d0e1f203-1a2f-082d-72a2-b28100818b9c",
     "name": "Employee Management API",
-    "description": "Collection for Employee Management System APIs including Authentication and Employee CRUD operations.",
+    "description": "Complete collection for Employee Management System APIs with JWT Authentication.\n\n🔐 AUTHENTICATION:\n- Register users (automatically creates employee profile)\n- Login to get JWT token\n- Use Bearer token for secured endpoints\n\n📱 REGISTRATION REQUIREMENTS:\n- Name: Minimum 3 characters\n- Email: Valid email format\n- Password: Minimum 6 characters\n- Phone Number: Exactly 10 digits\n- Role: USER or ADMIN\n\n👥 EMPLOYEE MANAGEMENT:\n- Paginated employee listing\n- Get own profile (/me)\n- CRUD operations with role-based access\n- ADMIN: Full access\n- USER: Read access + own profile management\n\n📧 FEATURES:\n- Async welcome email sending\n- Duplicate prevention (email & phone)\n- Input validation\n- Comprehensive error handling",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
       "name": "Auth",
+      "description": "Authentication endpoints for user registration and login. JWT tokens are automatically saved to collection variables.",
       "item": [
         {
           "name": "Register User",
@@ -21,7 +22,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"secret123\",\n  \"role\": \"USER\"\n}"
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"phoneNumber\": \"9876543210\",\n  \"role\": \"USER\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/auth/register",
@@ -63,7 +64,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"secret123\"\n}"
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/auth/login",
@@ -83,6 +84,7 @@
     },
     {
       "name": "Employees",
+      "description": "Employee management endpoints with role-based access control.\n\n🔐 ACCESS CONTROL:\n- ADMIN: Full CRUD operations on all employees\n- USER: Read operations + manage own profile only\n\n📄 PAGINATION:\n- Get All Employees supports: ?page=0&size=10&sortBy=id\n- Sorting options: id, firstName, lastName, email, department, salary",
       "item": [
         {
           "name": "Get All Employees",
@@ -100,13 +102,59 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/employees",
+              "raw": "{{base_url}}/api/employees?page=0&size=10&sortBy=id",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
                 "api",
                 "employees"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0",
+                  "description": "Page number (0-based)"
+                },
+                {
+                  "key": "size",
+                  "value": "10",
+                  "description": "Number of items per page"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "id",
+                  "description": "Sort field (id, firstName, lastName, email, department, salary)"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get My Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/me",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "me"
               ]
             }
           },

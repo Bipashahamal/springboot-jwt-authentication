@@ -23,6 +23,9 @@ public class User {
 
     private String password;
 
+    @Column(unique = true)
+     private String phoneNumber;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 

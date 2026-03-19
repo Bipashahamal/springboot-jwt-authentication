@@ -3,6 +3,7 @@ package com.example.employee_management.controller;
 import com.example.employee_management.dto.LoginRequest;
 import com.example.employee_management.dto.RegisterRequest;
 import com.example.employee_management.entity.*;
+import com.example.employee_management.service.EmailService;
 import com.example.employee_management.service.EmployeeService;
 import com.example.employee_management.exception.DuplicateEmailException;
 import com.example.employee_management.exception.InvalidCredentialsException;
@@ -10,6 +11,7 @@ import com.example.employee_management.repository.UserRepository;
 import com.example.employee_management.util.JwtUtil;
 
 import java.util.HashMap;
+import com.example.employee_management.exception.DuplicatePhoneNumberException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+
+    @Autowired
+    private EmailService emailService;
 
     @Autowired
     private UserRepository userRepository;
@@ -40,16 +45,23 @@ public class AuthController {
     private EmployeeService employeeService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<Map<String, String>> register(@RequestBody RegisterRequest request) {
 
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new DuplicateEmailException("Email already exists!");
         }
 
+          // ✅ Check phone number duplicate
+    if (userRepository.findByPhoneNumber(request.getPhoneNumber()).isPresent()) {
+        throw new DuplicatePhoneNumberException("Phone number already exists!");
+    }
+
+
         User user = new User();
         user.setName(request.getName());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setPhoneNumber(request.getPhoneNumber());
 
         if (request.getRole() == null) {
             user.setRole(Role.USER);
@@ -70,6 +82,7 @@ public class AuthController {
                     .salary(0.0)
                     .build();
             employeeService.createEmployee(employee);
+           
         } catch (DuplicateEmailException e) {
             // An admin already created this employee profile. That's perfectly fine!
             // We just ignore the duplicate error so the User can still register
@@ -78,7 +91,15 @@ public class AuthController {
                     "Employee profile already exists for: " + request.getEmail() + ". Linking to existing profile.");
         }
 
-        return new ResponseEntity<>("User registered successfully!", HttpStatus.CREATED);
+        // 3️⃣ Send welcome email asynchronously for user
+        emailService.sendWelcomeEmail(user.getEmail(), user.getName());
+
+        // ✅ Return response including email info
+    Map<String, String> response = new HashMap<>();
+    response.put("message", "User registered successfully!");
+    response.put("emailStatus", "Welcome email will be sent in the background");
+
+        return new ResponseEntity<Map<String, String>>(response, HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
