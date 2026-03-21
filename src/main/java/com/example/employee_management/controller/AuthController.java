@@ -13,6 +13,8 @@ import com.example.employee_management.util.JwtUtil;
 import java.util.HashMap;
 import com.example.employee_management.exception.DuplicatePhoneNumberException;
 
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,17 +47,17 @@ public class AuthController {
     private EmployeeService employeeService;
 
     @PostMapping("/register")
-    public ResponseEntity<Map<String, String>> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<Map<String, String>> register(@Valid @RequestBody RegisterRequest request) {
 
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new DuplicateEmailException("Email already exists!");
         }
 
-          // ✅ Check phone number duplicate
-    if (userRepository.findByPhoneNumber(request.getPhoneNumber()).isPresent()) {
-        throw new DuplicatePhoneNumberException("Phone number already exists!");
-    }
-
+        // ✅ Check phone number duplicate (only if provided)
+        if (request.getPhoneNumber() != null &&
+                userRepository.findByPhoneNumber(request.getPhoneNumber()).isPresent()) {
+            throw new DuplicatePhoneNumberException("Phone number already exists!");
+        }
 
         User user = new User();
         user.setName(request.getName());
@@ -82,7 +84,7 @@ public class AuthController {
                     .salary(0.0)
                     .build();
             employeeService.createEmployee(employee);
-           
+
         } catch (DuplicateEmailException e) {
             // An admin already created this employee profile. That's perfectly fine!
             // We just ignore the duplicate error so the User can still register
@@ -94,10 +96,17 @@ public class AuthController {
         // 3️⃣ Send welcome email asynchronously for user
         emailService.sendWelcomeEmail(user.getEmail(), user.getName());
 
+        // ✅ Add delay before response
+        try {
+            Thread.sleep(13000); // 13 seconds delay
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
         // ✅ Return response including email info
-    Map<String, String> response = new HashMap<>();
-    response.put("message", "User registered successfully!");
-    response.put("emailStatus", "Welcome email will be sent in the background");
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "User registered successfully!");
+        response.put("emailStatus", "Welcome email will be sent in the background");
 
         return new ResponseEntity<Map<String, String>>(response, HttpStatus.CREATED);
     }

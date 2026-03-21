@@ -2,9 +2,11 @@ package com.example.employee_management.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
-@EnableAsync
+@EnableAsync // Enable @Async methods
+@EnableScheduling // Enable @Scheduled methods
 public class AsyncConfig {
-    // Enables @Async processing in the project
+    // No extra code needed
 }

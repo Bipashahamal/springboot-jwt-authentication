@@ -2,10 +2,54 @@
   "info": {
     "_postman_id": "d0e1f203-1a2f-082d-72a2-b28100818b9c",
     "name": "Employee Management API",
-    "description": "Complete collection for Employee Management System APIs with JWT Authentication.\n\n🔐 AUTHENTICATION:\n- Register users (automatically creates employee profile)\n- Login to get JWT token\n- Use Bearer token for secured endpoints\n\n📱 REGISTRATION REQUIREMENTS:\n- Name: Minimum 3 characters\n- Email: Valid email format\n- Password: Minimum 6 characters\n- Phone Number: Exactly 10 digits\n- Role: USER or ADMIN\n\n👥 EMPLOYEE MANAGEMENT:\n- Paginated employee listing\n- Get own profile (/me)\n- CRUD operations with role-based access\n- ADMIN: Full access\n- USER: Read access + own profile management\n\n📧 FEATURES:\n- Async welcome email sending\n- Duplicate prevention (email & phone)\n- Input validation\n- Comprehensive error handling",
+    "description": "Complete collection for Employee Management System APIs with JWT Authentication.\n\n🔐 AUTHENTICATION:\n- Register users (automatically creates employee profile)\n- Login to get JWT token\n- Use Bearer token for secured endpoints\n\n📱 REGISTRATION REQUIREMENTS:\n- Name: Minimum 3 characters\n- Email: Valid email format\n- Password: Minimum 6 characters\n- Phone Number: Exactly 10 digits (optional)\n- Role: USER or ADMIN\n\n👥 EMPLOYEE MANAGEMENT:\n- Paginated employee listing\n- Get own profile (/me)\n- CRUD operations with role-based access\n- ADMIN: Full access\n- USER: Read access + own profile management\n\n🌐 PUBLIC ENDPOINTS:\n- Health check (/api/public/health)\n- API information (/api/public/info)\n\n📧 FEATURES:\n- Async welcome email sending\n- Duplicate prevention (email & phone)\n- Input validation\n- Comprehensive error handling",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
+    {
+      "name": "Public",
+      "description": "Public endpoints that don't require authentication.",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/public/health",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "public",
+                "health"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "API Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/public/info",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "public",
+                "info"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
     {
       "name": "Auth",
       "description": "Authentication endpoints for user registration and login. JWT tokens are automatically saved to collection variables.",
