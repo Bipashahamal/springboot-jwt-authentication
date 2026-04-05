@@ -3,7 +3,9 @@ package com.example.employee_management.controller;
 import com.example.employee_management.dto.EmployeeRequest;
 import com.example.employee_management.entity.Employee;
 import com.example.employee_management.service.EmployeeService;
-import com.example.employee_management.service.FileService;
+import com.example.employee_management.service.EmployeeService;
+import com.example.employee_management.service.UserFileService;
+import com.example.employee_management.entity.UserFile;
 
 import jakarta.validation.Valid;
 
@@ -27,7 +29,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
     
     @Autowired
-    private FileService fileService;
+    private UserFileService userFileService;
 
     // ✅ CREATE EMPLOYEE (ADMIN only)
     @PreAuthorize("hasAuthority('CREATE_EMPLOYEE')")
@@ -121,14 +123,16 @@ public class EmployeeController {
     @PostMapping(value = "/{id}/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Map<String, String>> uploadProfileImage(
             @PathVariable Long id, 
-            @RequestParam("file") MultipartFile file) {
+            @RequestParam("file") MultipartFile file) throws java.io.IOException {
 
-        String fileName = fileService.uploadFile(file);
-        employeeService.updateProfileImage(id, fileName);
+        Employee employee = employeeService.getEmployeeById(id);
+        UserFile userFile = userFileService.uploadFileByUserEmail(employee.getEmail(), file);
+        employeeService.updateProfileImage(id, userFile.getFileName());
 
         Map<String, String> response = new HashMap<>();
-        response.put("message", "Profile image uploaded successfully");
-        response.put("profileImage", fileName);
+        response.put("message", "Profile image uploaded and stored in database successfully");
+        response.put("profileImage", userFile.getFileName());
+        response.put("fileId", userFile.getId().toString());
 
         return ResponseEntity.ok(response);
     }

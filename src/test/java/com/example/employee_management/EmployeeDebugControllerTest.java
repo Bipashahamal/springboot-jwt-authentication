@@ -4,7 +4,6 @@ import com.example.employee_management.controller.EmployeeController;
 import com.example.employee_management.entity.Department;
 import com.example.employee_management.entity.Employee;
 import com.example.employee_management.service.EmployeeService;
-import com.example.employee_management.service.FileService;
 import com.example.employee_management.security.CustomUserDetailsService;
 import com.example.employee_management.security.RateLimitingFilter;
 import com.example.employee_management.util.JwtUtil;
@@ -76,7 +75,8 @@ public class EmployeeDebugControllerTest {
 
         when(employeeService.getEmployeeById(15L)).thenReturn(emp);
 
-        // Perform request and print output (this will show the stack trace if serialization fails)
+        // Perform request and print output (this will show the stack trace if
+        // serialization fails)
         mockMvc.perform(get("/api/employees/15"))
                 .andDo(print())
                 .andExpect(status().isOk());
