@@ -24,10 +24,13 @@ public class User {
     private String password;
 
     @Column(unique = true)
-     private String phoneNumber;
+    private String phoneNumber;
 
+    @Column(length = 50)
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    private boolean enabled = true;
 
     private LocalDateTime createdAt = LocalDateTime.now();
 }

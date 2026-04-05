@@ -1,0 +1,871 @@
+[INFO] Scanning for projects...
+Downloading from central: https://repo.maven.apache.org/maven2/org/springframework/boot/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/cyclonedx/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/flywaydb/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/io/github/git-commit-id/maven-metadata.xml
+Progress (1): 234 B                   Downloaded from central: https://repo.maven.apache.org/maven2/org/flywaydb/maven-metadata.xml (234 B at 709 B/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/jooq/maven-metadata.xml
+Progress (1): 255 BProgress (2): 255 B | 249 B                           Downloaded from central: https://repo.maven.apache.org/maven2/io/github/git-commit-id/maven-metadata.xml (255 B at 736 B/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/springframework/boot/maven-metadata.xml (249 B at 719 B/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/liquibase/maven-metadata.xml
+Progress (1): 243 B                   Downloaded from central: https://repo.maven.apache.org/maven2/org/cyclonedx/maven-metadata.xml (243 B at 671 B/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/graalvm/buildtools/maven-metadata.xml
+Progress (1): 394 B                   Downloaded from central: https://repo.maven.apache.org/maven2/org/liquibase/maven-metadata.xml (394 B at 3.7 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-metadata.xml
+Progress (1): 4.6 kBProgress (1): 12 kB Progress (1): 14 kB                   Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-metadata.xml (14 kB at 510 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/maven-metadata.xml
+Progress (1): 242 BProgress (2): 242 B | 3.1 kBProgress (2): 242 B | 7.7 kBProgress (2): 242 B | 12 kB Progress (2): 242 B | 17 kB                           Downloaded from central: https://repo.maven.apache.org/maven2/org/graalvm/buildtools/maven-metadata.xml (242 B at 1.6 kB/s)
+Progress (1): 20 kBProgress (1): 21 kBProgress (2): 21 kB | 398 B                           Downloaded from central: https://repo.maven.apache.org/maven2/org/jooq/maven-metadata.xml (398 B at 2.2 kB/s)
+Progress (2): 21 kB | 375 B                           Downloaded from central: https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/maven-metadata.xml (375 B at 2.1 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/maven-metadata.xml (21 kB at 389 kB/s)
+[INFO] 
+[INFO] ------------------< com.example:employee-management >-------------------
+[INFO] Building employee-management 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.5.13:run (default-cli) > test-compile @ employee-management >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ employee-management ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ employee-management ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 48 source files with javac [debug parameters release 21] to target/classes
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by lombok.permit.Permit
+WARNING: Please consider reporting this to the maintainers of class lombok.permit.Permit
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ employee-management ---
+[INFO] skip non existing resourceDirectory /Users/bipaashahamal/Documents/employee-management/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ employee-management ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 3 source files with javac [debug parameters release 21] to target/test-classes
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[35,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[35,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[35,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[35,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[35,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[38,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[38,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[38,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[38,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[38,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[41,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[41,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[41,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[41,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[41,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[44,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[44,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[44,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[44,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[44,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[55,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[55,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[55,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[55,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] /Users/bipaashahamal/Documents/employee-management/src/test/java/com/example/employee_management/EmployeeDebugControllerTest.java:[55,6] org.springframework.boot.test.mock.mockito.MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[INFO] 
+[INFO] <<< spring-boot:3.5.13:run (default-cli) < test-compile @ employee-management <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.5.13:run (default-cli) @ employee-management ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.13)
+
+2026-04-05T10:26:09.408+05:45  INFO 52044 --- [employee-management] [           main] c.e.e.EmployeeManagementApplication      : Starting EmployeeManagementApplication using Java 25.0.1 with PID 52044 (/Users/bipaashahamal/Documents/employee-management/target/classes started by bipaashahamal in /Users/bipaashahamal/Documents/employee-management)
+2026-04-05T10:26:09.408+05:45  INFO 52044 --- [employee-management] [           main] c.e.e.EmployeeManagementApplication      : No active profile set, falling back to 1 default profile: "default"
+2026-04-05T10:26:09.654+05:45  INFO 52044 --- [employee-management] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-05T10:26:09.679+05:45  INFO 52044 --- [employee-management] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 5 JPA repository interfaces.
+2026-04-05T10:26:09.879+05:45  INFO 52044 --- [employee-management] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-04-05T10:26:09.883+05:45  INFO 52044 --- [employee-management] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-05T10:26:09.884+05:45  INFO 52044 --- [employee-management] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.53]
+2026-04-05T10:26:09.898+05:45  INFO 52044 --- [employee-management] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-05T10:26:09.898+05:45  INFO 52044 --- [employee-management] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 473 ms
+2026-04-05T10:26:09.949+05:45  INFO 52044 --- [employee-management] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-05T10:26:09.960+05:45  INFO 52044 --- [employee-management] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.45.Final
+2026-04-05T10:26:09.967+05:45  INFO 52044 --- [employee-management] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-04-05T10:26:10.039+05:45  INFO 52044 --- [employee-management] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-05T10:26:10.046+05:45  INFO 52044 --- [employee-management] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-05T10:26:10.149+05:45  INFO 52044 --- [employee-management] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6bdedbbd
+2026-04-05T10:26:10.150+05:45  INFO 52044 --- [employee-management] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-05T10:26:10.173+05:45  INFO 52044 --- [employee-management] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-05T10:26:10.442+05:45  INFO 52044 --- [employee-management] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-05T10:26:10.466+05:45  INFO 52044 --- [employee-management] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-05T10:26:10.614+05:45  INFO 52044 --- [employee-management] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-04-05T10:26:10.767+05:45 DEBUG 52044 --- [employee-management] [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 26 mappings in 'requestMappingHandlerMapping'
+2026-04-05T10:26:10.813+05:45 DEBUG 52044 --- [employee-management] [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2026-04-05T10:26:10.858+05:45 DEBUG 52044 --- [employee-management] [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-04-05T10:26:10.878+05:45 DEBUG 52044 --- [employee-management] [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-04-05T10:26:10.963+05:45  INFO 52044 --- [employee-management] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-04-05T10:26:10.968+05:45  INFO 52044 --- [employee-management] [           main] c.e.e.EmployeeManagementApplication      : Started EmployeeManagementApplication in 1.672 seconds (process running for 1.764)
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:26:10.969
+2026-04-05T10:26:10.984+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:26:10.986+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:26:11.052+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:26:11.052+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:26:11.053+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:26:11.053+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:26:11.385+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:26:11.386+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Miss","first":"Ella","last":"Spencer"},"location":{"street":{"number":5744,"name":"College St"},"city":"Perth","state":"Australian Capital Territory","country":"Australia","postcode":9715,"coordinates":{"latitude":"-82.9056","longitude":"88.2832"},"timezone":{"offset":"-1:00","description":"Azores, Cape Verde Islands"}},"email":"ella.spencer@example.com","login":{"uuid":"4d0691a0-1eff-43a7-b4c9-4de7f95c0fa4","username":"purpleelephant839","password":"rhiannon","salt":"680lPEnr","md5":"2e08bb42ae4d6ece64d6f3e4bcd4f49c","sha1":"a396918b2ddb2301644bb42136032beb34976340","sha256":"a2f382ceb0015647ac266a48b787ec0fa5e1a8f298999ac0424ede90fb7cea37"},"dob":{"date":"1995-03-14T20:43:08.595Z","age":31},"registered":{"date":"2012-02-28T08:35:44.567Z","age":14},"phone":"05-3709-6253","cell":"0427-184-137","id":{"name":"TFN","value":"767880115"},"picture":{"large":"https://randomuser.me/api/portraits/women/96.jpg","medium":"https://randomuser.me/api/portraits/med/women/96.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/96.jpg"},"nat":"AU"}],"info":{"seed":"35a471e342748c09","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:26:11.387+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:26:11.387+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:26:11.738+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:26:11.739+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"When a family cat died in ancient Egypt, family members would mourn by shaving off their eyebrows. They also held elaborate funerals during which they drank wine and beat their breasts. The cat was embalmed with a sculpted wooden mask and the tiny mummy was placed in the family tomb or in a pet cemetery with tiny mummies of mice.","length":331}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:26:25.972
+2026-04-05T10:26:25.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:26:25.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:26:26.009+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:26:26.010+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:26:26.010+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:26:26.010+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:26:26.331+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:26:26.331+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"male","name":{"title":"Mr","first":"Marcus","last":"Peterson"},"location":{"street":{"number":5875,"name":"Timber Wolf Trail"},"city":"Anna","state":"Washington","country":"United States","postcode":87308,"coordinates":{"latitude":"87.1383","longitude":"-88.9152"},"timezone":{"offset":"+3:00","description":"Baghdad, Riyadh, Moscow, St. Petersburg"}},"email":"marcus.peterson@example.com","login":{"uuid":"ab89d0ed-66a2-41bf-a4e6-d39298cd2733","username":"tinygorilla862","password":"dianne","salt":"yxPihR7i","md5":"8e4a26ef5c97060a857a9bb60af7d50a","sha1":"d5a9e54c2da26fa3e7bd3db372aea0938bb9c195","sha256":"1030a272946e0b6b61496873f3c90c87b5462f4a3436d18982860fb6cf5a7e1f"},"dob":{"date":"1958-03-22T16:29:13.296Z","age":68},"registered":{"date":"2013-09-02T10:03:22.591Z","age":12},"phone":"(657) 814-2246","cell":"(447) 472-4396","id":{"name":"SSN","value":"535-74-7592"},"picture":{"large":"https://randomuser.me/api/portraits/men/15.jpg","medium":"https://randomuser.me/api/portraits/med/men/15.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/15.jpg"},"nat":"US"}],"info":{"seed":"f1443bcf96fdbedc","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:26:26.332+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:26:26.333+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:26:27.201+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:26:27.202+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"The way you treat kittens in the early stages of it's life will render it's personality traits later in life.","length":109}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:26:40.971
+2026-04-05T10:26:40.972+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:26:40.972+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:26:41.016+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:26:41.017+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:26:41.018+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:26:41.018+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:26:41.470+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:26:41.471+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"male","name":{"title":"Mr","first":"Jack","last":"Harsvik"},"location":{"street":{"number":4048,"name":"Geitmyrsveien"},"city":"Bratsberg","state":"Trøndelag","country":"Norway","postcode":"2848","coordinates":{"latitude":"40.1092","longitude":"-84.2769"},"timezone":{"offset":"+8:00","description":"Beijing, Perth, Singapore, Hong Kong"}},"email":"jack.harsvik@example.com","login":{"uuid":"64d641ef-77e0-45f8-ab28-d1dd6ee8f62c","username":"blacklion863","password":"qbg26i","salt":"DC6dw7Hx","md5":"000bf380fa8b60c76b2007ebbaff9665","sha1":"28b12b8eac63eed44a06abb79ae7907b0667311a","sha256":"c8755c54ac8dfb6105283587713563bacfc086f8cccd06cdcc92b42f9f56ce44"},"dob":{"date":"1951-04-20T17:33:37.714Z","age":74},"registered":{"date":"2019-03-10T08:06:33.110Z","age":7},"phone":"59859418","cell":"44376303","id":{"name":"FN","value":"20045101372"},"picture":{"large":"https://randomuser.me/api/portraits/men/81.jpg","medium":"https://randomuser.me/api/portraits/med/men/81.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/81.jpg"},"nat":"NO"}],"info":{"seed":"4d333cc40b0b1d29","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:26:41.472+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:26:41.473+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:26:41.806+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:26:41.807+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"The first true cats came into existence about 12 million years ago and were the Proailurus.","length":91}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:26:55.973
+2026-04-05T10:26:55.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:26:55.974+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:26:56.018+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:26:56.018+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:26:56.019+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:26:56.019+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:26:56.434+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:26:56.435+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"male","name":{"title":"Mr","first":"Herédio","last":"Pereira"},"location":{"street":{"number":8531,"name":"Rua Treze "},"city":"Queimados","state":"Paraíba","country":"Brazil","postcode":84163,"coordinates":{"latitude":"-74.5978","longitude":"-11.5784"},"timezone":{"offset":"+5:30","description":"Bombay, Calcutta, Madras, New Delhi"}},"email":"heredio.pereira@example.com","login":{"uuid":"7cbddb8d-3c95-4711-ba1a-1368d81af4b4","username":"beautifulostrich166","password":"pheonix","salt":"nWLtCehm","md5":"a531921df05a5657d1ea938ccf5ccc05","sha1":"bed090431e45c929252987e5e8ae970fa8ed47b0","sha256":"40b1b7b197e6454dc6754c8430ef427f989eb4a7d956cb0280769ca28fead59f"},"dob":{"date":"1956-11-06T09:48:48.105Z","age":69},"registered":{"date":"2010-12-15T15:22:47.730Z","age":15},"phone":"(85) 0692-6243","cell":"(26) 2222-2927","id":{"name":"CPF","value":"139.647.584-03"},"picture":{"large":"https://randomuser.me/api/portraits/men/56.jpg","medium":"https://randomuser.me/api/portraits/med/men/56.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/56.jpg"},"nat":"BR"}],"info":{"seed":"2ba82c53548b2e72","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:26:56.436+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:26:56.437+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:26:56.846+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:26:56.847+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"A cat's field of vision is about 200 degrees.","length":45}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:27:10.969
+2026-04-05T10:27:10.970+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:27:10.971+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:27:11.016+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:27:11.017+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:27:11.018+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:27:11.018+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:27:11.348+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:27:11.349+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Miss","first":"Penha","last":"Nascimento"},"location":{"street":{"number":3993,"name":"Rua Amazonas "},"city":"Guarapuava","state":"Maranhão","country":"Brazil","postcode":89755,"coordinates":{"latitude":"-74.0188","longitude":"126.3751"},"timezone":{"offset":"-12:00","description":"Eniwetok, Kwajalein"}},"email":"penha.nascimento@example.com","login":{"uuid":"ca306155-e8f5-4583-bc4a-42b056aef463","username":"redfish254","password":"cuan","salt":"I8txIoCV","md5":"02f3ba6bad67ad14e39959847a7d924c","sha1":"cddd4934f283fc95838071a49622f9f61d29dcfb","sha256":"363458ec3ebcfaf694589ff6f4c98946227d9547706698756e32c0f34ad30ff4"},"dob":{"date":"1986-03-16T17:43:54.677Z","age":40},"registered":{"date":"2002-11-04T11:18:08.218Z","age":23},"phone":"(46) 8924-2133","cell":"(38) 9791-5513","id":{"name":"CPF","value":"174.593.204-28"},"picture":{"large":"https://randomuser.me/api/portraits/women/35.jpg","medium":"https://randomuser.me/api/portraits/med/women/35.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/35.jpg"},"nat":"BR"}],"info":{"seed":"a52f6a71be539094","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:27:11.350+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:27:11.351+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:27:11.694+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:27:11.695+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:27:25.973
+2026-04-05T10:27:25.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:27:25.974+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:27:26.013+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:27:26.013+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:27:26.014+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:27:26.014+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:27:26.334+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:27:26.335+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Mrs","first":"Angélica","last":"Alvarez"},"location":{"street":{"number":8605,"name":"Prolongación Guinea Ecuatorial"},"city":"Tonila","state":"Guanajuato","country":"Mexico","postcode":15891,"coordinates":{"latitude":"26.6106","longitude":"48.4502"},"timezone":{"offset":"-11:00","description":"Midway Island, Samoa"}},"email":"angelica.alvarez@example.com","login":{"uuid":"10a0dee5-1897-47c8-8908-73865e1bdc81","username":"orangeladybug308","password":"20002000","salt":"HJECXHbK","md5":"cdd29f9d5475b300ee9351ee0ca0396e","sha1":"dde8af85f3d18b6336631b53d12d3b4eb41268cd","sha256":"9b26501ddab13318ff474ef7a978a63b6ea49177e76c90b6823e8e3ea9b1e3a0"},"dob":{"date":"1973-02-25T00:57:30.378Z","age":53},"registered":{"date":"2010-04-15T08:58:53.874Z","age":15},"phone":"(680) 787 5199","cell":"(655) 192 8702","id":{"name":"NSS","value":"40 41 28 7616 4"},"picture":{"large":"https://randomuser.me/api/portraits/women/33.jpg","medium":"https://randomuser.me/api/portraits/med/women/33.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/33.jpg"},"nat":"MX"}],"info":{"seed":"2d9ce7b4dae934b4","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:27:26.336+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:27:26.337+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:27:26.660+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:27:26.743+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"There are approximately 100 breeds of cat.","length":42}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:27:40.973
+2026-04-05T10:27:40.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:27:40.974+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:27:41.022+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:27:41.022+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:27:41.023+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:27:41.028+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:27:41.390+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:27:41.391+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"male","name":{"title":"Mr","first":"Ricardo","last":"Henning"},"location":{"street":{"number":9228,"name":"Finkenweg"},"city":"Wildenfels","state":"Baden-Württemberg","country":"Germany","postcode":79426,"coordinates":{"latitude":"-48.3900","longitude":"-76.9202"},"timezone":{"offset":"-3:00","description":"Brazil, Buenos Aires, Georgetown"}},"email":"ricardo.henning@example.com","login":{"uuid":"c55e4f0c-6cbe-4ff7-be40-eb23eb31bbd4","username":"brownbear922","password":"trustno1","salt":"zVU570CS","md5":"caa9602c053f25ba9e38fb1556821ed3","sha1":"51fa1a4f85bffcb9a0ee9b8b24af05f38346aac2","sha256":"dae76b873949c59ec8f1b7ccfefddeb5fb71a3c80a467460f2a5abd38a0ff75c"},"dob":{"date":"1984-03-26T20:15:53.794Z","age":42},"registered":{"date":"2005-05-09T04:50:54.408Z","age":20},"phone":"0972-0768260","cell":"0178-7965420","id":{"name":"SVNR","value":"29 260384 H 485"},"picture":{"large":"https://randomuser.me/api/portraits/men/24.jpg","medium":"https://randomuser.me/api/portraits/med/men/24.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/24.jpg"},"nat":"DE"}],"info":{"seed":"cba1e5be6d79cb35","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:27:41.392+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:27:41.393+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:27:41.800+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:27:41.801+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"A cat's nose is as unique as a human's fingerprint.","length":51}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:27:55.973
+2026-04-05T10:27:55.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:27:55.974+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:27:56.012+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:27:56.013+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:27:56.013+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:27:56.014+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:27:56.345+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:27:56.346+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Ms","first":"Sonia","last":"Day"},"location":{"street":{"number":6142,"name":"Shady Ln Dr"},"city":"Melbourne","state":"Northern Territory","country":"Australia","postcode":6270,"coordinates":{"latitude":"-89.5956","longitude":"60.3031"},"timezone":{"offset":"-3:30","description":"Newfoundland"}},"email":"sonia.day@example.com","login":{"uuid":"d3b49c94-f568-40d8-9a83-408a82eab77d","username":"brownfish134","password":"labia","salt":"tAHbYHMQ","md5":"a2339bee8046b4a998fec39b381efb9b","sha1":"714d9bc952a5376fd833ba9af3509de44cac564a","sha256":"f66811604f247d8328543cf3435f63af809d58f5f1566eae7f32a1628fc1cb54"},"dob":{"date":"1975-03-29T06:36:43.574Z","age":51},"registered":{"date":"2015-05-01T11:30:47.171Z","age":10},"phone":"01-9674-4839","cell":"0491-629-024","id":{"name":"TFN","value":"177865833"},"picture":{"large":"https://randomuser.me/api/portraits/women/54.jpg","medium":"https://randomuser.me/api/portraits/med/women/54.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/54.jpg"},"nat":"AU"}],"info":{"seed":"ebf3adaecf6af704","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:27:56.346+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:27:56.347+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:27:56.677+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:27:56.677+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"When a cat drinks, its tongue - which has tiny barbs on it - scoops the liquid up backwards.","length":92}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:28:10.972
+2026-04-05T10:28:10.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:28:10.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:28:11.017+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:28:11.017+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:28:11.018+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:28:11.018+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:28:11.335+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:28:11.335+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"male","name":{"title":"Mr","first":"Victor","last":"Jensen"},"location":{"street":{"number":4230,"name":"Nørre Alle"},"city":"V.Skerninge","state":"Syddanmark","country":"Denmark","postcode":74358,"coordinates":{"latitude":"-44.7124","longitude":"-75.0417"},"timezone":{"offset":"+8:00","description":"Beijing, Perth, Singapore, Hong Kong"}},"email":"victor.jensen@example.com","login":{"uuid":"f3d69eeb-6366-4fa9-9a4a-327c38d6d10e","username":"crazyostrich296","password":"pascal","salt":"zoAz9OKx","md5":"b943c7a0cee8f88cb7d62e8a3e083b12","sha1":"5dfa9a17f161a65d1397aad0b11e8da27b779ed3","sha256":"04befc9d9883ebc0bee520279bae4f3ce0f2e74d05ec42f169caded948f79197"},"dob":{"date":"1954-12-12T13:45:05.255Z","age":71},"registered":{"date":"2012-02-14T01:52:35.072Z","age":14},"phone":"25848109","cell":"21599375","id":{"name":"CPR","value":"121254-9332"},"picture":{"large":"https://randomuser.me/api/portraits/men/76.jpg","medium":"https://randomuser.me/api/portraits/med/men/76.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/76.jpg"},"nat":"DK"}],"info":{"seed":"8d6ed7eb64b7ba52","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:28:11.336+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:28:11.336+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:28:11.703+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:28:11.704+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"According to Hebrew legend, Noah prayed to God for help protecting all the food he stored on the ark from being eaten by rats. In reply, God made the lion sneeze, and out popped a cat.","length":184}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:28:25.969
+2026-04-05T10:28:25.969+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:28:25.970+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:28:26.084+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:28:26.085+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:28:26.085+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:28:26.086+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:28:33.178+05:45  INFO 52044 --- [employee-management] [nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-05T10:28:33.178+05:45  INFO 52044 --- [employee-management] [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-05T10:28:33.178+05:45 DEBUG 52044 --- [employee-management] [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2026-04-05T10:28:33.178+05:45 DEBUG 52044 --- [employee-management] [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2026-04-05T10:28:33.178+05:45 DEBUG 52044 --- [employee-management] [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2026-04-05T10:28:33.179+05:45 DEBUG 52044 --- [employee-management] [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@5d9639bb
+2026-04-05T10:28:33.179+05:45 DEBUG 52044 --- [employee-management] [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@63fcc21
+2026-04-05T10:28:33.179+05:45 DEBUG 52044 --- [employee-management] [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-04-05T10:28:33.179+05:45  INFO 52044 --- [employee-management] [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-04-05T10:28:34.540+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:28:34.541+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Miss","first":"Tessy","last":"Asselman"},"location":{"street":{"number":330,"name":"Klein Laren"},"city":"Winterswijk Miste","state":"Friesland","country":"Netherlands","postcode":"2551 IH","coordinates":{"latitude":"34.4282","longitude":"33.2815"},"timezone":{"offset":"+5:30","description":"Bombay, Calcutta, Madras, New Delhi"}},"email":"tessy.asselman@example.com","login":{"uuid":"e01b0ef3-d1ed-45f6-bb87-70bc96a1f499","username":"lazyladybug149","password":"lionel","salt":"g6Yw0zTS","md5":"e6bc2814f0ec6ec5d139637fbe04aa01","sha1":"ac33f91d310d5c62e3f55918c53b2febb9d1afc0","sha256":"9978380ebe414172e297596755c02e046f12d7aa275583b8a141e2ca3fef9d4e"},"dob":{"date":"1987-02-09T02:20:29.726Z","age":39},"registered":{"date":"2018-04-02T22:34:12.487Z","age":8},"phone":"(0261) 817459","cell":"(06) 04292865","id":{"name":"BSN","value":"41526360"},"picture":{"large":"https://randomuser.me/api/portraits/women/56.jpg","medium":"https://randomuser.me/api/portraits/med/women/56.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/56.jpg"},"nat":"NL"}],"info":{"seed":"5c9b223622d1aebd","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:28:34.541+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:28:34.541+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:28:34.945+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:28:34.946+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"Tigers are excellent swimmers and do not avoid water.","length":53}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:28:40.969
+2026-04-05T10:28:40.970+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:28:40.971+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:28:41.009+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:28:41.009+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:28:41.010+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:28:41.010+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:28:41.338+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:28:41.339+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"male","name":{"title":"Mr","first":"Zvezdan","last":"Žikić"},"location":{"street":{"number":9713,"name":"Žerovnička"},"city":"Ruma","state":"Kosovo","country":"Serbia","postcode":10471,"coordinates":{"latitude":"62.7157","longitude":"-74.2761"},"timezone":{"offset":"+5:00","description":"Ekaterinburg, Islamabad, Karachi, Tashkent"}},"email":"zvezdan.zikic@example.com","login":{"uuid":"ffaffb30-2c4c-442b-b298-ae1826634672","username":"purplelion692","password":"bulldog","salt":"iUpXtlRR","md5":"e570f3f6c77e796618ec93b13c5b5223","sha1":"0d7a2672e3a0ab99791f9aa6d9e326c4d0ae30a5","sha256":"9d20f2920733440e2ed8b3267678f6e08b4253e932887e91c38d41c4731cd5e4"},"dob":{"date":"1997-05-24T02:21:28.071Z","age":28},"registered":{"date":"2004-06-28T19:14:33.596Z","age":21},"phone":"013-3223-412","cell":"068-0955-023","id":{"name":"SID","value":"769743551"},"picture":{"large":"https://randomuser.me/api/portraits/men/53.jpg","medium":"https://randomuser.me/api/portraits/med/men/53.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/53.jpg"},"nat":"RS"}],"info":{"seed":"2ff40e8419903f06","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:28:41.340+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:28:41.340+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:28:41.704+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:28:41.704+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"Cats' hearing stops at 65 khz (kilohertz); humans' hearing stops at 20 khz.","length":75}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:28:55.969
+2026-04-05T10:28:55.970+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:28:55.970+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:28:56.007+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:28:56.008+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:28:56.008+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:28:56.009+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:28:56.334+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:28:56.334+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"male","name":{"title":"Mr","first":"Jonathan","last":"Møller"},"location":{"street":{"number":8624,"name":"Kanalvej"},"city":"Hornbæk","state":"Hovedstaden","country":"Denmark","postcode":59662,"coordinates":{"latitude":"-42.8429","longitude":"-31.8436"},"timezone":{"offset":"-4:00","description":"Atlantic Time (Canada), Caracas, La Paz"}},"email":"jonathan.moller@example.com","login":{"uuid":"784d6438-3445-44c2-a8ef-0c96affda2b2","username":"whitezebra126","password":"kool","salt":"lrruqWjO","md5":"3e182ac40520bd07519191a104c62bfa","sha1":"0f8f33215a1a430d4b4dfc80aa213b752892e4d6","sha256":"efe1ccbd3f094dfb25e1b446da9760423195ed84e8076d41dc0566250dfb84cd"},"dob":{"date":"1988-03-30T03:30:34.463Z","age":38},"registered":{"date":"2014-10-24T19:44:06.985Z","age":11},"phone":"69986161","cell":"59501271","id":{"name":"CPR","value":"290388-2139"},"picture":{"large":"https://randomuser.me/api/portraits/men/38.jpg","medium":"https://randomuser.me/api/portraits/med/men/38.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/38.jpg"},"nat":"DK"}],"info":{"seed":"edaf4fb3d9fb7bfc","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:28:56.335+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:28:56.335+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:28:56.651+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:28:56.651+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"A cat can\u2019t climb head first down a tree because every claw on a cat\u2019s paw points the same way. To get down from a tree, a cat must back down.","length":142}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:29:10.973
+2026-04-05T10:29:10.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:29:10.974+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:29:11.012+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:29:11.013+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:29:11.013+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:29:11.014+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:29:11.332+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:29:11.333+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Mrs","first":"Likhitha","last":"Anand"},"location":{"street":{"number":8849,"name":"Rasta Peth"},"city":"Nagercoil","state":"Odisha","country":"India","postcode":65881,"coordinates":{"latitude":"10.2697","longitude":"99.7496"},"timezone":{"offset":"-8:00","description":"Pacific Time (US & Canada)"}},"email":"likhitha.anand@example.com","login":{"uuid":"5072ebab-926e-454b-87a6-d5b51cba4607","username":"greensnake405","password":"mygirl","salt":"iy5vrSdC","md5":"e3ed6ac77b41d75dc6d4ebeb9d6b6178","sha1":"436cb21ddc6060cada6930304670ad96ca466682","sha256":"42f67261c3cbee15342538f8b76b97e9426c20704707af94202195b4996721be"},"dob":{"date":"1985-06-28T23:15:09.576Z","age":40},"registered":{"date":"2008-08-15T00:29:33.122Z","age":17},"phone":"9662404337","cell":"8449441029","id":{"name":"UIDAI","value":"137960999727"},"picture":{"large":"https://randomuser.me/api/portraits/women/11.jpg","medium":"https://randomuser.me/api/portraits/med/women/11.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/11.jpg"},"nat":"IN"}],"info":{"seed":"90f2921799adde6a","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:29:11.333+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:29:11.333+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:29:11.656+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:29:11.656+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"You check your cats pulse on the inside of the back thigh, where the leg joins to the body. Normal for cats: 110-170 beats per minute.","length":134}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:29:25.972
+2026-04-05T10:29:25.972+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:29:25.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:29:26.014+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:29:26.014+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:29:26.015+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:29:26.016+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:29:26.343+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:29:26.343+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Miss","first":"Alicia","last":"Walker"},"location":{"street":{"number":1445,"name":"15th St"},"city":"Trenton","state":"Alberta","country":"Canada","postcode":"P0I 0L9","coordinates":{"latitude":"-64.7627","longitude":"167.4914"},"timezone":{"offset":"-12:00","description":"Eniwetok, Kwajalein"}},"email":"alicia.walker@example.com","login":{"uuid":"1e0020e0-3ec0-4e8e-acf9-acd9c8eeff99","username":"organicostrich827","password":"warez","salt":"3Xc4F6xX","md5":"b737cc46e5de903a4371270d02b3b7f4","sha1":"268750755c41001fc33c785a030eee55256ead87","sha256":"32a9d8f2432d6c2c066c9aa2e6bffcdcb1f5fcb3ecf99ead3a07500ca80bd865"},"dob":{"date":"1991-05-14T00:20:24.159Z","age":34},"registered":{"date":"2013-08-12T18:25:09.075Z","age":12},"phone":"N99 Y96-6355","cell":"A11 D42-9911","id":{"name":"SIN","value":"395806003"},"picture":{"large":"https://randomuser.me/api/portraits/women/78.jpg","medium":"https://randomuser.me/api/portraits/med/women/78.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/78.jpg"},"nat":"CA"}],"info":{"seed":"eea7e35fe84771be","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:29:26.344+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:29:26.344+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:29:26.766+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:29:26.767+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"Female cats tend to be right pawed, while male cats are more often left pawed. Interestingly, while 90% of humans are right handed, the remaining 10% of lefties also tend to be male.","length":182}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:29:40.968
+2026-04-05T10:29:40.969+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:29:40.970+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:29:41.010+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:29:41.011+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:29:41.014+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:29:41.024+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:29:41.412+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:29:41.413+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"male","name":{"title":"Mr","first":"Claude","last":"Walters"},"location":{"street":{"number":2751,"name":"Thornridge Cir"},"city":"Launceston","state":"Northern Territory","country":"Australia","postcode":4484,"coordinates":{"latitude":"-87.7825","longitude":"-99.4828"},"timezone":{"offset":"-1:00","description":"Azores, Cape Verde Islands"}},"email":"claude.walters@example.com","login":{"uuid":"2e64d857-b4b0-48f4-81e7-002e75cf0617","username":"whiteladybug143","password":"alissa","salt":"StTcH9qX","md5":"288349877c831dd0b49703afb6fbab8b","sha1":"37cc5b78730ec4bab31b5d6353a68531d5f53590","sha256":"f2b976e04a0967d1b86b70955b5f23a755bc83a89f3a4fb0470a1fd6ccc1e4a5"},"dob":{"date":"1946-07-31T22:47:15.574Z","age":79},"registered":{"date":"2005-06-14T17:11:56.422Z","age":20},"phone":"04-3890-4045","cell":"0436-202-748","id":{"name":"TFN","value":"263917604"},"picture":{"large":"https://randomuser.me/api/portraits/men/92.jpg","medium":"https://randomuser.me/api/portraits/med/men/92.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/92.jpg"},"nat":"AU"}],"info":{"seed":"682b21e37eee576c","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:29:41.413+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:29:41.413+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:29:41.819+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:29:41.820+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"At 4 weeks, it is important to play with kittens so that they do not develope a fear of people.","length":95}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:29:55.973
+2026-04-05T10:29:55.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:29:55.974+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:29:56.086+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:29:56.087+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:29:56.087+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:29:56.088+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:29:56.419+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:29:56.419+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Miss","first":"Käte","last":"Meiners"},"location":{"street":{"number":8129,"name":"Kirchweg"},"city":"Altlandsberg","state":"Berlin","country":"Germany","postcode":42807,"coordinates":{"latitude":"-52.4709","longitude":"90.4452"},"timezone":{"offset":"+5:30","description":"Bombay, Calcutta, Madras, New Delhi"}},"email":"kate.meiners@example.com","login":{"uuid":"990bd802-5a79-4079-b69e-e306ec98ca5e","username":"tinytiger313","password":"mollydog","salt":"QELaDJoA","md5":"d51df7384e61694156e1ceefcd647b29","sha1":"79ff930a9d410be8d49300fe154e532fe39edb3c","sha256":"67ec597be0e8690808d2d271cf4ef28fe56803b622680bb2152ed63ec267e919"},"dob":{"date":"1945-02-26T23:09:11.371Z","age":81},"registered":{"date":"2009-11-01T23:50:40.045Z","age":16},"phone":"0765-7638129","cell":"0175-0183064","id":{"name":"SVNR","value":"75 260245 M 812"},"picture":{"large":"https://randomuser.me/api/portraits/women/88.jpg","medium":"https://randomuser.me/api/portraits/med/women/88.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/88.jpg"},"nat":"DE"}],"info":{"seed":"bfc0fdcd56fcc16d","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:29:56.420+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:29:56.420+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:29:56.764+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:29:56.765+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"A cat's smell is their strongest sense, and they rely on this leading sense to identify people and objects; a feline's sense of smell is 14x better than a human's.","length":163}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:30:10.969
+2026-04-05T10:30:10.970+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:30:10.970+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:30:11.005+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:30:11.006+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:30:11.006+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:30:11.007+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:30:11.318+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:30:11.319+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Ms","first":"Buse","last":"Biçer"},"location":{"street":{"number":6154,"name":"Abanoz Sk"},"city":"Ardahan","state":"Isparta","country":"Turkey","postcode":23355,"coordinates":{"latitude":"69.9525","longitude":"141.0107"},"timezone":{"offset":"+3:00","description":"Baghdad, Riyadh, Moscow, St. Petersburg"}},"email":"buse.bicer@example.com","login":{"uuid":"13f896e6-2a0e-432f-933a-8ff99e5110a6","username":"redlion993","password":"cats","salt":"Nb3lk0Jn","md5":"0940727ef32d8bc78cf1265f463ce673","sha1":"721429bc2872ff0f7094594724726a992e4941f5","sha256":"dcd2b200ed0f8c4dbee1c0066afaf41a52e2d39498e6bbaa772256ab764172cf"},"dob":{"date":"1998-08-15T11:45:18.501Z","age":27},"registered":{"date":"2014-08-07T00:44:45.962Z","age":11},"phone":"(830)-106-3024","cell":"(318)-786-5962","id":{"name":"","value":null},"picture":{"large":"https://randomuser.me/api/portraits/women/60.jpg","medium":"https://randomuser.me/api/portraits/med/women/60.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/60.jpg"},"nat":"TR"}],"info":{"seed":"d09ef7f8f14edf30","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:30:11.320+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:30:11.320+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:30:11.712+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:30:11.712+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"There are more than 500 million domestic cats in the world, with approximately 40 recognized breeds.","length":100}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:30:25.969
+2026-04-05T10:30:25.970+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:30:25.971+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:30:26.023+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:30:26.024+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:30:26.025+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:30:26.025+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:30:26.341+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:30:26.341+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"male","name":{"title":"Mr","first":"Yasnozir","last":"Pilipchuk"},"location":{"street":{"number":4674,"name":"Zoyi Gayday"},"city":"Dobromil","state":"Avtonomna Respublika Krim","country":"Ukraine","postcode":72524,"coordinates":{"latitude":"75.0810","longitude":"-124.0617"},"timezone":{"offset":"-2:00","description":"Mid-Atlantic"}},"email":"yasnozir.pilipchuk@example.com","login":{"uuid":"fa67340b-33ef-4b5b-90a2-c12a5201bd2f","username":"purpledog822","password":"1235","salt":"on30RuSw","md5":"3f5e0d7459555b797ea495d021553b92","sha1":"18d47c79219d14523533bf4a9f2d54d14b5b4b0a","sha256":"e757d52d80cc1a23cc930d1cf594af199fd6e9f45a40a33d3b6242a3a907293c"},"dob":{"date":"1951-09-18T15:52:28.707Z","age":74},"registered":{"date":"2005-01-07T23:19:25.755Z","age":21},"phone":"(068) E01-7819","cell":"(097) Z88-3589","id":{"name":"","value":null},"picture":{"large":"https://randomuser.me/api/portraits/men/65.jpg","medium":"https://randomuser.me/api/portraits/med/men/65.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/65.jpg"},"nat":"UA"}],"info":{"seed":"0a816ff9287cb0d4","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:30:26.342+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:30:26.342+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:30:26.672+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:30:26.672+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"A sexually-active feral tom-cat \\owns\\\" an area of about three square miles and \\\"\"sprays\\\"\" to mark his territory with strong smelling urine.\"\"\"","length":145}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:30:40.972
+2026-04-05T10:30:40.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:30:40.974+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:30:41.025+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:30:41.025+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:30:41.026+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:30:41.026+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:30:41.349+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:30:41.349+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Miss","first":"Franca","last":"Aragão"},"location":{"street":{"number":7506,"name":"Avenida da Legalidade"},"city":"Maringá","state":"Rio Grande do Sul","country":"Brazil","postcode":81859,"coordinates":{"latitude":"-79.9005","longitude":"168.6412"},"timezone":{"offset":"+5:30","description":"Bombay, Calcutta, Madras, New Delhi"}},"email":"franca.aragao@example.com","login":{"uuid":"502bc08c-c660-4e30-b8d7-7ef9f534a1f5","username":"heavyladybug913","password":"steffi","salt":"yxa4pboI","md5":"3b1ab867e82061f99e173a6b28fa13ba","sha1":"e55fc31684594f03d25d5ebecbfa7622cbb8e530","sha256":"4106761da57d9ec912b101e0914cda0b8048429ecf53eab7c96e890575138d28"},"dob":{"date":"1998-03-02T12:33:11.051Z","age":28},"registered":{"date":"2014-09-20T02:30:22.239Z","age":11},"phone":"(32) 2609-3893","cell":"(08) 0044-3598","id":{"name":"CPF","value":"063.003.271-92"},"picture":{"large":"https://randomuser.me/api/portraits/women/91.jpg","medium":"https://randomuser.me/api/portraits/med/women/91.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/91.jpg"},"nat":"BR"}],"info":{"seed":"b9dc02f2ddd5458a","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:30:41.349+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:30:41.350+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:30:41.666+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:30:41.666+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"Unlike humans, cats do not need to blink their eyes on a regular basis to keep their eyes lubricated.","length":101}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:30:55.972
+2026-04-05T10:30:55.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:30:55.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:30:56.024+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:30:56.100+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:30:56.101+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:30:56.101+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:30:57.081+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:30:57.081+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"male","name":{"title":"Mr","first":"Gerry","last":"Duncan"},"location":{"street":{"number":3571,"name":"Church Lane"},"city":"Loughrea","state":"Limerick","country":"Ireland","postcode":51831,"coordinates":{"latitude":"-1.1977","longitude":"-127.4097"},"timezone":{"offset":"+3:30","description":"Tehran"}},"email":"gerry.duncan@example.com","login":{"uuid":"63950987-0552-469a-97e6-d40d2d3f18be","username":"tinygorilla859","password":"idefix","salt":"bvvixJPJ","md5":"a380a93e49b0b2bd64d41214095e684a","sha1":"8153c242153b2279d0ad9dd04b6e7876ec07bae0","sha256":"00a31d0b136f08b64a9c6fa49e276c2021ce50ffeb3440f14651a3a26587c7c5"},"dob":{"date":"1960-10-03T13:28:02.573Z","age":65},"registered":{"date":"2002-11-16T21:31:03.970Z","age":23},"phone":"021-829-0579","cell":"081-634-9454","id":{"name":"PPS","value":"2566403T"},"picture":{"large":"https://randomuser.me/api/portraits/men/87.jpg","medium":"https://randomuser.me/api/portraits/med/men/87.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/87.jpg"},"nat":"IE"}],"info":{"seed":"45e4cec728be7c8e","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:30:57.082+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:30:57.082+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:30:57.484+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:30:57.485+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"Some common houseplants poisonous to cats include: English Ivy, iris, mistletoe, philodendron, and yew.","length":103}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:31:10.973
+2026-04-05T10:31:10.974+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:31:10.975+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:31:11.012+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:31:11.012+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:31:11.013+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:31:11.014+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:31:11.329+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:31:11.329+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Mrs","first":"Vilma","last":"Latvala"},"location":{"street":{"number":473,"name":"Verkatehtaankatu"},"city":"Multia","state":"Åland","country":"Finland","postcode":35206,"coordinates":{"latitude":"-24.5812","longitude":"8.9875"},"timezone":{"offset":"-7:00","description":"Mountain Time (US & Canada)"}},"email":"vilma.latvala@example.com","login":{"uuid":"f7a30e8f-4a5a-4613-9e34-ed95da734bae","username":"goldenswan871","password":"chrysler","salt":"OuPyeo35","md5":"1ef9cab1a0f3e0ff1574490fb728b9eb","sha1":"102cadcce852cbac00c4e7d76eb8ae93a3cf59ff","sha256":"51e1b9579a291332912e079c831c9680c77b96f9225862124c7f5cff037daa58"},"dob":{"date":"1977-12-24T05:51:11.403Z","age":48},"registered":{"date":"2009-05-27T11:53:24.584Z","age":16},"phone":"07-413-769","cell":"044-556-61-10","id":{"name":"HETU","value":"NaNNA700undefined"},"picture":{"large":"https://randomuser.me/api/portraits/women/82.jpg","medium":"https://randomuser.me/api/portraits/med/women/82.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/82.jpg"},"nat":"FI"}],"info":{"seed":"625fd05f2674eedc","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:31:11.330+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:31:11.330+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:31:11.719+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:31:11.720+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"Florence Nightingale owned more than 60 cats in her lifetime.","length":61}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:31:25.972
+2026-04-05T10:31:25.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:31:25.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:31:26.013+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:31:26.013+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:31:26.013+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:31:26.013+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:31:26.342+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:31:26.342+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"male","name":{"title":"Mr","first":"Odair","last":"da Mata"},"location":{"street":{"number":7228,"name":"Rua Piauí "},"city":"Porto Seguro","state":"Roraima","country":"Brazil","postcode":71590,"coordinates":{"latitude":"-79.6636","longitude":"-51.2191"},"timezone":{"offset":"-8:00","description":"Pacific Time (US & Canada)"}},"email":"odair.damata@example.com","login":{"uuid":"b42b8ada-bfb6-4621-a32d-a3527755be51","username":"bigswan662","password":"candice","salt":"T9RyAlfN","md5":"6149307783ba42b4f9513fa3267758a4","sha1":"1b2304ae279f222f17232828cd7f647d1c941f04","sha256":"ad4992f8cdc1558490782c4da54b3c02961ce9dabad6c843dd640fe17f3316e9"},"dob":{"date":"1956-12-11T08:33:47.616Z","age":69},"registered":{"date":"2008-08-19T20:20:59.916Z","age":17},"phone":"(44) 3378-3095","cell":"(56) 9699-1056","id":{"name":"CPF","value":"956.107.653-58"},"picture":{"large":"https://randomuser.me/api/portraits/men/18.jpg","medium":"https://randomuser.me/api/portraits/med/men/18.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/18.jpg"},"nat":"BR"}],"info":{"seed":"2827e7f8666dbfdd","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:31:26.342+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:31:26.342+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:31:26.774+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:31:26.774+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"Some notable people who disliked cats:  Napoleon Bonaparte, Dwight D. Eisenhower, Hitler.","length":89}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:31:40.970
+2026-04-05T10:31:40.971+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:31:40.971+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:31:41.003+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:31:41.005+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:31:41.006+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:31:41.006+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:31:41.325+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:31:41.325+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Mrs","first":"Izzie","last":"Adams"},"location":{"street":{"number":5759,"name":"Mill Lane"},"city":"Navan","state":"Leitrim","country":"Ireland","postcode":87088,"coordinates":{"latitude":"0.5254","longitude":"40.8955"},"timezone":{"offset":"+9:30","description":"Adelaide, Darwin"}},"email":"izzie.adams@example.com","login":{"uuid":"709e96a7-db11-40e4-988c-0397d80ac93b","username":"smallbear272","password":"kristen","salt":"Reec3sLF","md5":"117961bb301cad45951d439e8af6d9c0","sha1":"44fcce8a56e7ac6f61a0a437e33dea9a62151896","sha256":"23f8b3d676eb8e2033cda22dd2d0a3f1c4f71cbbe80998e6f3cfc52ae3c7a098"},"dob":{"date":"1976-10-08T22:13:35.792Z","age":49},"registered":{"date":"2011-03-29T03:21:34.207Z","age":15},"phone":"041-067-5275","cell":"081-728-4974","id":{"name":"PPS","value":"7760833T"},"picture":{"large":"https://randomuser.me/api/portraits/women/79.jpg","medium":"https://randomuser.me/api/portraits/med/women/79.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/79.jpg"},"nat":"IE"}],"info":{"seed":"a055fe748e100aba","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:31:41.325+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:31:41.325+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:31:41.644+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:31:41.644+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"Isaac Newton invented the cat flap. Newton was experimenting in a pitch-black room. Spithead, one of his cats, kept opening the door and wrecking his experiment. The cat flap kept both Newton and Spithead happy.","length":211}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:31:55.973
+2026-04-05T10:31:55.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:31:55.974+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:31:56.014+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:31:56.014+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:31:56.015+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:31:56.015+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:31:56.364+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:31:56.365+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"male","name":{"title":"Mr","first":"Mathias","last":"Kristensen"},"location":{"street":{"number":6703,"name":"Gammel Landevej"},"city":"Ugerløse","state":"Sjælland","country":"Denmark","postcode":33293,"coordinates":{"latitude":"-42.2243","longitude":"-148.4158"},"timezone":{"offset":"0:00","description":"Western Europe Time, London, Lisbon, Casablanca"}},"email":"mathias.kristensen@example.com","login":{"uuid":"967a3ec4-a947-49b0-bf61-fe6d61457242","username":"happycat952","password":"yomama","salt":"PJsDMRb7","md5":"2c7280d276eb7b28fde6cc40f523a38a","sha1":"80226b0a6874756e5c5f32e7440752ee2e9c9f4d","sha256":"6a8fbbd439db755cee6e7f45bf99fb63bca182e927cd5d308015818ffeb29ffb"},"dob":{"date":"1997-05-02T14:02:47.250Z","age":28},"registered":{"date":"2010-06-07T13:02:48.857Z","age":15},"phone":"31234121","cell":"08038085","id":{"name":"CPR","value":"020597-0395"},"picture":{"large":"https://randomuser.me/api/portraits/men/84.jpg","medium":"https://randomuser.me/api/portraits/med/men/84.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/84.jpg"},"nat":"DK"}],"info":{"seed":"54286adedb7808b7","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:31:56.365+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:31:56.366+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:31:56.775+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:31:56.776+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"Approximately 1\/3 of cat owners think their pets are able to read their minds.","length":78}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:32:10.972
+2026-04-05T10:32:10.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:32:10.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:32:11.133+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:32:11.134+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:32:11.135+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:32:11.135+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:32:11.527+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:32:11.527+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Mrs","first":"Sineide","last":"Moraes"},"location":{"street":{"number":3168,"name":"Rua Mato Grosso "},"city":"Porto Alegre","state":"Distrito Federal","country":"Brazil","postcode":65658,"coordinates":{"latitude":"-73.2810","longitude":"126.0257"},"timezone":{"offset":"-2:00","description":"Mid-Atlantic"}},"email":"sineide.moraes@example.com","login":{"uuid":"d97556a3-9259-4958-b30c-99cc4f251a60","username":"silvermeercat625","password":"12121212","salt":"kwMKvFRn","md5":"44ae742b91856374067fff881b403d98","sha1":"75608a1c3a310b42270e5bd2839574421cd2a524","sha256":"732f0beb3ce18d2accb2990175e6a690177d91b3601318c2b79869cf9c008aa1"},"dob":{"date":"1989-04-08T05:40:01.478Z","age":36},"registered":{"date":"2017-06-01T17:06:47.511Z","age":8},"phone":"(91) 3163-0423","cell":"(59) 9200-6435","id":{"name":"CPF","value":"931.218.072-75"},"picture":{"large":"https://randomuser.me/api/portraits/women/29.jpg","medium":"https://randomuser.me/api/portraits/med/women/29.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/29.jpg"},"nat":"BR"}],"info":{"seed":"cbef275cc35f2e4a","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:32:11.528+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:32:11.528+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:32:11.929+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:32:11.929+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"Cats lived with soldiers in trenches, where they killed mice during World War I.","length":80}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:32:25.972
+2026-04-05T10:32:25.972+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:32:25.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:32:26.133+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:32:26.134+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:32:26.135+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:32:26.135+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:32:26.521+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:32:26.522+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Mrs","first":"Miriam","last":"Velasco"},"location":{"street":{"number":1846,"name":"Calle del Arenal"},"city":"Almería","state":"Extremadura","country":"Spain","postcode":54946,"coordinates":{"latitude":"-30.1062","longitude":"162.1697"},"timezone":{"offset":"+6:00","description":"Almaty, Dhaka, Colombo"}},"email":"miriam.velasco@example.com","login":{"uuid":"af6c2b1a-724b-49b5-ab31-3a7f40e3579b","username":"beautifulduck684","password":"carbon","salt":"irTLRuyQ","md5":"0d886c46449fee28aebd349ca5e1edff","sha1":"39b062e178c6be209ad5c16d9f860edbfbeef3a0","sha256":"96ed633a4abf0b8bc955edc5682411722f2173789d8ac79b0bd1a966e47ff7e7"},"dob":{"date":"1970-01-20T14:13:25.828Z","age":56},"registered":{"date":"2021-05-31T23:26:13.819Z","age":4},"phone":"909-234-671","cell":"615-780-246","id":{"name":"DNI","value":"59423020-C"},"picture":{"large":"https://randomuser.me/api/portraits/women/25.jpg","medium":"https://randomuser.me/api/portraits/med/women/25.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/25.jpg"},"nat":"ES"}],"info":{"seed":"58cd5b58a753659d","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:32:26.522+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:32:26.522+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:32:27.007+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:32:27.007+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"A cat has approximately 60 to 80 million olfactory cells (a human has between 5 and 20 million).","length":96}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:32:40.973
+2026-04-05T10:32:40.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:32:40.974+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:32:41.230+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:32:41.230+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:32:41.231+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:32:41.232+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:32:49.572+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:32:49.573+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"male","name":{"title":"Mr","first":"Jesse","last":"Niva"},"location":{"street":{"number":8261,"name":"Hämeenkatu"},"city":"Luhanka","state":"Lapland","country":"Finland","postcode":16469,"coordinates":{"latitude":"-29.8791","longitude":"-97.8263"},"timezone":{"offset":"-12:00","description":"Eniwetok, Kwajalein"}},"email":"jesse.niva@example.com","login":{"uuid":"5a0d3741-8864-4293-980b-d41b607300f0","username":"beautifulpeacock840","password":"kingpin","salt":"HIxrjKmh","md5":"e7da288317b14a5fdabcccd737ba452c","sha1":"65be09a564d6731874070bfc46954f3d08e0e700","sha256":"88ec8758901f8edd60b380b6bbd7792f97fb5ee0e05a0d631536a3865d2b3c32"},"dob":{"date":"1960-09-15T10:29:18.735Z","age":65},"registered":{"date":"2003-11-10T10:51:52.992Z","age":22},"phone":"05-041-009","cell":"040-200-70-80","id":{"name":"HETU","value":"NaNNA083undefined"},"picture":{"large":"https://randomuser.me/api/portraits/men/74.jpg","medium":"https://randomuser.me/api/portraits/med/men/74.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/74.jpg"},"nat":"FI"}],"info":{"seed":"23588db3a712eb9c","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:32:49.574+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:32:49.574+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:32:49.919+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:32:49.919+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"The Maine Coon is 4 to 5 times larger than the Singapura, the smallest breed of cat.","length":84}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:32:55.972
+2026-04-05T10:32:55.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:32:55.974+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:32:56.015+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:32:56.016+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:32:56.017+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:32:56.017+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:32:56.348+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:32:56.348+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Ms","first":"Hilda","last":"Moreno"},"location":{"street":{"number":9923,"name":"W 6th St"},"city":"Mildura","state":"Australian Capital Territory","country":"Australia","postcode":2418,"coordinates":{"latitude":"-83.7154","longitude":"68.4457"},"timezone":{"offset":"+6:00","description":"Almaty, Dhaka, Colombo"}},"email":"hilda.moreno@example.com","login":{"uuid":"69ecfd91-ca7d-4a11-8157-7cbb61f45e79","username":"heavykoala792","password":"enternow","salt":"NB2NeeVe","md5":"4f36870ab3b2a1fb17259eef77b08c3c","sha1":"206f469080e05df27ce92d86012fd2bd1b74b3b3","sha256":"e51b18a81c05e91ddceff73aa032901600fde21c504339f5b5e40c1bde8ffa50"},"dob":{"date":"1986-12-28T11:28:34.114Z","age":39},"registered":{"date":"2016-07-06T12:27:54.680Z","age":9},"phone":"01-9239-4562","cell":"0421-647-634","id":{"name":"TFN","value":"969027537"},"picture":{"large":"https://randomuser.me/api/portraits/women/38.jpg","medium":"https://randomuser.me/api/portraits/med/women/38.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/38.jpg"},"nat":"AU"}],"info":{"seed":"ee9446ccc467360c","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:32:56.348+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:32:56.348+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:32:56.682+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:32:56.682+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"A cat has the power to sometimes heal themselves by purring. A domestic cat's purr has a frequency of between 25 and 150 Hertz, which happens to be the frequency at which muscles and bones best grow and repair themselves. ","length":222}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:33:10.972
+2026-04-05T10:33:10.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:33:10.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:33:11.015+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:33:11.016+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:33:11.016+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:33:11.016+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:33:11.340+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:33:11.340+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"male","name":{"title":"Monsieur","first":"André","last":"Menard"},"location":{"street":{"number":426,"name":"Rue de la Barre"},"city":"Ferrera","state":"Ticino","country":"Switzerland","postcode":1648,"coordinates":{"latitude":"-63.1470","longitude":"-59.4038"},"timezone":{"offset":"-12:00","description":"Eniwetok, Kwajalein"}},"email":"andre.menard@example.com","login":{"uuid":"0a00a4c2-c666-405b-aee3-103a141d1c48","username":"tinyduck176","password":"valley","salt":"YxyzatRz","md5":"d435586710857dc7a194b17c567f391a","sha1":"e6761632cf4549e8add92e10cab44d6f5c43e04a","sha256":"68201d76076e5c744e111ede24713716d39e4e27f462ae284bba3a1a943f56be"},"dob":{"date":"1948-01-15T05:33:24.718Z","age":78},"registered":{"date":"2006-07-04T16:57:36.668Z","age":19},"phone":"076 181 73 55","cell":"075 246 07 48","id":{"name":"AVS","value":"756.9358.5353.29"},"picture":{"large":"https://randomuser.me/api/portraits/men/63.jpg","medium":"https://randomuser.me/api/portraits/med/men/63.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/63.jpg"},"nat":"CH"}],"info":{"seed":"48a4fc6fa1d42264","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:33:11.341+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:33:11.341+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:33:11.676+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:33:11.676+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"Owning a cat is actually proven to be beneficial for your health.","length":65}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:33:25.969
+2026-04-05T10:33:25.969+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:33:25.970+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:33:26.011+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:33:26.011+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:33:26.012+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:33:26.012+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:33:26.378+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:33:26.378+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Mrs","first":"Mestan","last":"Dağdaş"},"location":{"street":{"number":8987,"name":"Vatan Cd"},"city":"Adıyaman","state":"Sinop","country":"Turkey","postcode":12506,"coordinates":{"latitude":"64.3114","longitude":"157.5927"},"timezone":{"offset":"-4:00","description":"Atlantic Time (Canada), Caracas, La Paz"}},"email":"mestan.dagdas@example.com","login":{"uuid":"9484ef0b-08c9-4680-a34f-e6215e2a2b4f","username":"yellowtiger478","password":"darren","salt":"HWKAIayp","md5":"17606c80d2d476c98092c419dd8989b8","sha1":"7259c3eedf5848b1bcfc23ecea19efd8ca9e73ff","sha256":"6207004d2bee45e715920a1d10b8fa213b60a132c4eb0d5ad6d317e4dbb225ae"},"dob":{"date":"1952-11-20T19:56:14.443Z","age":73},"registered":{"date":"2004-05-13T03:02:18.325Z","age":21},"phone":"(916)-162-9603","cell":"(680)-517-3946","id":{"name":"","value":null},"picture":{"large":"https://randomuser.me/api/portraits/women/30.jpg","medium":"https://randomuser.me/api/portraits/med/women/30.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/30.jpg"},"nat":"TR"}],"info":{"seed":"14daee1101ed553e","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:33:26.379+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:33:26.379+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:33:26.787+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:33:26.788+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"Cats are now Britain's favourite pet: there are 7.7 million cats as opposed to 6.6 million dogs.","length":96}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:33:40.970
+2026-04-05T10:33:40.970+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:33:40.970+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:33:41.008+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:33:41.008+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:33:41.008+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:33:41.008+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:33:41.318+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:33:41.318+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Mrs","first":"Norah","last":"Gerard"},"location":{"street":{"number":6432,"name":"Avenue Vauban"},"city":"Nanterre","state":"Ardèche","country":"France","postcode":94115,"coordinates":{"latitude":"-14.2341","longitude":"116.6562"},"timezone":{"offset":"-6:00","description":"Central Time (US & Canada), Mexico City"}},"email":"norah.gerard@example.com","login":{"uuid":"d683a190-e987-4424-9e44-f1f328c939c6","username":"crazywolf177","password":"denali","salt":"KIBrktx5","md5":"63f07baad75c58db40f017cb58c4d4c0","sha1":"0f103007585e2ef943a563157235864d0033bb58","sha256":"eda970ac5669035f9a566586ba37ac314bcf77616e05a53079d11a71d41c1170"},"dob":{"date":"1999-04-12T01:55:13.023Z","age":26},"registered":{"date":"2006-11-12T11:19:37.287Z","age":19},"phone":"03-75-26-74-85","cell":"06-49-31-46-53","id":{"name":"INSEE","value":"2990379865272 13"},"picture":{"large":"https://randomuser.me/api/portraits/women/13.jpg","medium":"https://randomuser.me/api/portraits/med/women/13.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/13.jpg"},"nat":"FR"}],"info":{"seed":"3d7e2dfedf6a1941","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:33:41.318+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:33:41.319+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:33:41.661+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:33:41.661+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"Many Egyptians worshipped the goddess Bast, who had a woman\u2019s body and a cat\u2019s head.","length":84}
+✅ All free APIs called successfully!
+---
+Fixed Rate Scheduler: Task running at - 05-04-2026 10:33:55.971
+2026-04-05T10:33:55.972+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://jsonplaceholder.typicode.com/posts/1
+2026-04-05T10:33:55.973+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:33:56.019+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:33:56.020+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+📡 JSONPlaceholder API - Response received: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+2026-04-05T10:33:56.020+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://randomuser.me/api/
+2026-04-05T10:33:56.020+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:33:56.380+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:33:56.380+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+👤 Random User API - Called successfully, response: {"results":[{"gender":"female","name":{"title":"Mrs","first":"Akhila","last":"Nair"},"location":{"street":{"number":9537,"name":"MG Rd Bangalore"},"city":"Saharsa","state":"Andhra Pradesh","country":"India","postcode":16924,"coordinates":{"latitude":"8.5706","longitude":"24.2657"},"timezone":{"offset":"+10:00","description":"Eastern Australia, Guam, Vladivostok"}},"email":"akhila.nair@example.com","login":{"uuid":"095ff8c0-1b77-4f85-8df3-0f43223a2d11","username":"bluebird974","password":"zipper","salt":"TCE0HwsY","md5":"9f5d74c51be1d2d0a143f2d5a7e5b0ce","sha1":"24f7a3a859b091136b40a63063f0dc918e484905","sha256":"0e3a6eebd57d6806ea965dff2587ca8dfce09537f97d272abb23b113302b3da2"},"dob":{"date":"1960-09-20T15:13:09.839Z","age":65},"registered":{"date":"2007-02-11T15:48:39.540Z","age":19},"phone":"7161810178","cell":"8996830655","id":{"name":"UIDAI","value":"705654769481"},"picture":{"large":"https://randomuser.me/api/portraits/women/15.jpg","medium":"https://randomuser.me/api/portraits/med/women/15.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/15.jpg"},"nat":"IN"}],"info":{"seed":"0221d0b37c831b3e","results":1,"page":1,"version":"1.4"}}
+2026-04-05T10:33:56.381+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : HTTP GET https://catfact.ninja/fact
+2026-04-05T10:33:56.381+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/yaml, application/*+json, */*]
+2026-04-05T10:33:56.707+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Response 200 OK
+2026-04-05T10:33:56.708+05:45 DEBUG 52044 --- [employee-management] [   scheduling-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+🐱 Cat Facts API - Fact retrieved: {"fact":"The most traveled cat is Hamlet, who escaped from his carrier while on a flight. He hid for seven weeks behind a panel on the airplane. By the time he was discovered, he had traveled nearly 373,000 miles (600,000 km).","length":217}
+✅ All free APIs called successfully!
+---
+2026-04-05T10:34:04.824+05:45  INFO 52044 --- [employee-management] [ionShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-05T10:34:04.827+05:45  INFO 52044 --- [employee-management] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-05T10:34:04.829+05:45  INFO 52044 --- [employee-management] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-05T10:34:04.831+05:45  INFO 52044 --- [employee-management] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-05T10:34:04.832+05:45  INFO 52044 --- [employee-management] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

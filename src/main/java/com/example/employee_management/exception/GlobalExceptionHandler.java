@@ -36,18 +36,36 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleValidation(MethodArgumentNotValidException ex) {
-        Map<String, Object> errors = new HashMap<>();
+        Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getFieldErrors()
                 .forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
 
-        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        String message = String.join(", ", errors.values());
+        Map<String, Object> body = buildResponse(HttpStatus.BAD_REQUEST, message);
+
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(DuplicatePhoneNumberException.class)
     public ResponseEntity<?> handleDuplicatePhone(DuplicatePhoneNumberException ex) {
-    return new ResponseEntity<>(
-            buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage()),
-            HttpStatus.BAD_REQUEST
-    );
-}
+        return new ResponseEntity<>(
+                buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage()),
+                HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(RegistrationException.class)
+    public ResponseEntity<?> handleRegistrationException(RegistrationException ex) {
+        String message = String.join(", ", ex.getErrors().values());
+        Map<String, Object> body = buildResponse(HttpStatus.BAD_REQUEST, message);
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
+    // Catch-all to expose the 500 error details
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> handleGlobalException(Exception ex) {
+        ex.printStackTrace(); // Print stack trace to the server logs
+        return new ResponseEntity<>(
+                buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex.getClass().getSimpleName() + ": " + ex.getMessage()),
+                HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

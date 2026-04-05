@@ -1,19 +1,37 @@
 package com.example.employee_management.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
 
+    @Autowired
+    private JavaMailSender mailSender;
+
+    // ✅ Send Welcome Email
     @Async
-    public void sendWelcomeEmail(String email, String name) {
-        System.out.println("Sending welcome email to: " + email + " (Name: " + name + ")");
+    public void sendWelcomeEmail(String toEmail, String name) {
+
         try {
-            Thread.sleep(15000); // simulate email sending delay
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            SimpleMailMessage message = new SimpleMailMessage();
+
+            message.setTo(toEmail);
+            message.setSubject("Welcome to Employee Management System");
+
+            message.setText(
+                    "Hello " + name + ",\n\n" +
+                    "Welcome to our company! 🎉\n\n" +
+                    "Your profile has been created successfully.\n\n" +
+                    "Regards,\nTeam");
+
+            mailSender.send(message);
+
+        } catch (Exception e) {
+            System.out.println("Email sending failed: " + e.getMessage());
         }
-        System.out.println("Welcome email sent to " + name + " (" + email + ")");
     }
 }

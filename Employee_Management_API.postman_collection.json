@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "d0e1f203-1a2f-082d-72a2-b28100818b9c",
     "name": "Employee Management API",
-    "description": "Complete collection for Employee Management System APIs with JWT Authentication.\n\n🔐 AUTHENTICATION:\n- Register users (automatically creates employee profile)\n- Login to get JWT token\n- Use Bearer token for secured endpoints\n\n📱 REGISTRATION REQUIREMENTS:\n- Name: Minimum 3 characters\n- Email: Valid email format\n- Password: Minimum 6 characters\n- Phone Number: Exactly 10 digits (optional)\n- Role: USER or ADMIN\n\n👥 EMPLOYEE MANAGEMENT:\n- Paginated employee listing\n- Get own profile (/me)\n- CRUD operations with role-based access\n- ADMIN: Full access\n- USER: Read access + own profile management\n\n🌐 PUBLIC ENDPOINTS:\n- Health check (/api/public/health)\n- API information (/api/public/info)\n\n📧 FEATURES:\n- Async welcome email sending\n- Duplicate prevention (email & phone)\n- Input validation\n- Comprehensive error handling",
+    "description": "Complete collection for Employee Management System APIs with JWT Authentication.\n\n🔐 AUTHENTICATION:\n- Register users (automatically creates employee profile)\n- Login to get JWT token\n- Use Bearer token for secured endpoints\n\n📱 REGISTRATION REQUIREMENTS:\n- Name: Minimum 3 characters\n- Email: Valid email format\n- Password: Minimum 6 characters\n- Phone Number: Exactly 10 digits (optional)\n- Role: SYSTEM_ADMIN, USER_ADMIN, or EMPLOYEE_VIEWER\n\n👥 EMPLOYEE MANAGEMENT:\n- Paginated employee listing\n- Get own profile (/me)\n- CRUD operations with role-based access\n- SYSTEM_ADMIN: Full access\n- USER_ADMIN: Create, Update, View access\n- EMPLOYEE_VIEWER: Read access + own profile management\n\n🌐 PUBLIC ENDPOINTS:\n- Health check (/api/public/health)\n- API information (/api/public/info)\n\n📧 FEATURES:\n- Async welcome email sending\n- Duplicate prevention (email & phone)\n- Input validation\n- Comprehensive error handling",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -66,7 +66,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"phoneNumber\": \"9876543210\",\n  \"role\": \"USER\"\n}"
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"phoneNumber\": \"9876543210\",\n  \"role\": \"SYSTEM_ADMIN\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/auth/register",
@@ -92,6 +92,9 @@
                   "var jsonData = pm.response.json();",
                   "if(jsonData.accessToken) {",
                   "    pm.collectionVariables.set(\"token\", jsonData.accessToken);",
+                  "}",
+                  "if(jsonData.refreshToken) {",
+                  "    pm.collectionVariables.set(\"refreshToken\", jsonData.refreshToken);",
                   "}"
                 ],
                 "type": "text/javascript"
@@ -123,12 +126,82 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Refresh Session",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if(jsonData.accessToken) {",
+                  "    pm.collectionVariables.set(\"token\", jsonData.accessToken);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/refresh",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "refresh"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout Session",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/logout",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
     {
       "name": "Employees",
-      "description": "Employee management endpoints with role-based access control.\n\n🔐 ACCESS CONTROL:\n- ADMIN: Full CRUD operations on all employees\n- USER: Read operations + manage own profile only\n\n📄 PAGINATION:\n- Get All Employees supports: ?page=0&size=10&sortBy=id\n- Sorting options: id, firstName, lastName, email, department, salary",
+      "description": "Employee management endpoints with role-based access control.\n\n🔐 ACCESS CONTROL:\n- SYSTEM_ADMIN: Full CRUD operations on all employees\n- USER_ADMIN: Create, Update, and View all employees\n- EMPLOYEE_VIEWER: Read operations + manage own profile only\n\n📄 PAGINATION:\n- Get All Employees supports: ?page=0&size=10&sortBy=id\n- Sorting options: id, firstName, lastName, email, department, salary",
       "item": [
         {
           "name": "Get All Employees",
@@ -169,6 +242,24 @@
                   "key": "sortBy",
                   "value": "id",
                   "description": "Sort field (id, firstName, lastName, email, department, salary)"
+                },
+                {
+                  "key": "name",
+                  "value": "",
+                  "description": "Filter by Name (optional)",
+                  "disabled": true
+                },
+                {
+                  "key": "department",
+                  "value": "IT & Support",
+                  "description": "Filter by Department name (optional)",
+                  "disabled": true
+                },
+                {
+                  "key": "minSalary",
+                  "value": "50000",
+                  "description": "Minimum Salary Filter (optional)",
+                  "disabled": true
                 }
               ]
             }
@@ -336,6 +427,107 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Upload Profile Image",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/employees/1/upload",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "1",
+                "upload"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Departments",
+      "description": "Department management endpoints.\n\nNOTE: These use the singular /api/departments mapping.",
+      "item": [
+        {
+          "name": "Create Department",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"IT & Support\",\n    \"description\": \"IT + Support Teams\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/departments",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "department"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Department",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"IT & Support\",\n    \"description\": \"IT + Support Teams\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/departments/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "department",
+                "1"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     }
@@ -348,6 +540,11 @@
     },
     {
       "key": "token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "refreshToken",
       "value": "",
       "type": "string"
     }
