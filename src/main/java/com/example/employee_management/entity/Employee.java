@@ -34,9 +34,9 @@ public class Employee {
     @Column(name = "is_deleted", nullable = false, columnDefinition = "BIT(1) DEFAULT 0")
     private boolean isDeleted = false;
 
+    private Long profileImageId;  // ← Store file ID from user_files table
+
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
-
-    private String profileImage;
 
 }

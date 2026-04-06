@@ -2,12 +2,12 @@
   "info": {
     "_postman_id": "d0e1f203-1a2f-082d-72a2-b28100818b9c",
     "name": "Employee Management API",
-    "description": "Complete collection for Employee Management System APIs with JWT Authentication.\n\n🔐 AUTHENTICATION:\n- Register users (automatically creates employee profile)\n- Login to get JWT token\n- Use Bearer token for secured endpoints\n\n📱 REGISTRATION REQUIREMENTS:\n- Name: Minimum 3 characters\n- Email: Valid email format\n- Password: Minimum 6 characters\n- Phone Number: Exactly 10 digits (optional)\n- Role: SYSTEM_ADMIN, USER_ADMIN, or EMPLOYEE_VIEWER\n\n👥 EMPLOYEE MANAGEMENT:\n- Paginated employee listing\n- Get own profile (/me)\n- CRUD operations with role-based access\n- SYSTEM_ADMIN: Full access\n- USER_ADMIN: Create, Update, View access\n- EMPLOYEE_VIEWER: Read access + own profile management\n\n🌐 PUBLIC ENDPOINTS:\n- Health check (/api/public/health)\n- API information (/api/public/info)\n\n📧 FEATURES:\n- Async welcome email sending\n- Duplicate prevention (email & phone)\n- Input validation\n- Comprehensive error handling",
+    "description": "Complete collection for Employee Management System APIs with JWT Authentication.\n\n🔐 AUTHENTICATION:\n- Register users (automatically creates employee profile)\n- Login to get JWT token\n- Refresh token to extend session\n- Logout to invalidate refresh token\n- Use Bearer token for secured endpoints\n\n📱 REGISTRATION REQUIREMENTS:\n- Name: Minimum 3 characters\n- Email: Valid email format\n- Password: Minimum 6 characters\n- Phone Number: Exactly 10 digits (optional)\n- Role: SYSTEM_ADMIN, USER_ADMIN, or EMPLOYEE_VIEWER\n\n👤 EMPLOYEE MANAGEMENT:\n- Paginated employee listing\n- Get own profile (/me)\n- CRUD operations with role-based access\n- Restore soft-deleted employees\n- Search employees by name or department\n- Upload profile images (stores file ID)\n- SYSTEM_ADMIN: Full access\n- USER_ADMIN: Create, Update, View access\n- EMPLOYEE_VIEWER: Read access + own profile management\n\n📝 CREATE EMPLOYEE REQUIREMENTS:\n- firstName: Required, string\n- lastName: Optional, string\n- email: Required, valid email format\n- department: Required, string (department name)\n- salary: Required, positive number\n\n🏢 DEPARTMENT MANAGEMENT:\n- Create, Read, Update departments\n- Assign employees to departments\n\n📁 FILE MANAGEMENT:\n- Upload profile images for users\n- Get all files metadata\n- Download specific files\n\n🌐 PUBLIC ENDPOINTS:\n- Health check (/api/public/health)\n- API information (/api/public/info)\n\n📧 FEATURES:\n- Async welcome email sending\n- Duplicate prevention (email & phone)\n- Input validation\n- Comprehensive error handling\n- File upload with automatic profile linking",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Public",
+      "name": "🌐 Public",
       "description": "Public endpoints that don't require authentication.",
       "item": [
         {
@@ -17,14 +17,8 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/public/health",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "public",
-                "health"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["api", "public", "health"]
             }
           },
           "response": []
@@ -36,14 +30,8 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/public/info",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "public",
-                "info"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["api", "public", "info"]
             }
           },
           "response": []
@@ -51,148 +39,75 @@
       ]
     },
     {
-      "name": "Auth",
+      "name": "🔐 Auth",
       "description": "Authentication endpoints for user registration and login. JWT tokens are automatically saved to collection variables.",
       "item": [
         {
           "name": "Register User",
           "request": {
             "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "header": [{"key": "Content-Type", "value": "application/json"}],
             "body": {
               "mode": "raw",
               "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"phoneNumber\": \"9876543210\",\n  \"role\": \"SYSTEM_ADMIN\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/auth/register",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "auth",
-                "register"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
             }
           },
           "response": []
         },
         {
           "name": "Login User",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "if(jsonData.accessToken) {",
-                  "    pm.collectionVariables.set(\"token\", jsonData.accessToken);",
-                  "}",
-                  "if(jsonData.refreshToken) {",
-                  "    pm.collectionVariables.set(\"refreshToken\", jsonData.refreshToken);",
-                  "}"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
+          "event": [{"listen": "test", "script": {"exec": ["var jsonData = pm.response.json();", "if(jsonData.accessToken) {", "    pm.collectionVariables.set(\"token\", jsonData.accessToken);", "}", "if(jsonData.refreshToken) {", "    pm.collectionVariables.set(\"refreshToken\", jsonData.refreshToken);", "}"], "type": "text/javascript"}}],
           "request": {
             "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "header": [{"key": "Content-Type", "value": "application/json"}],
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/auth/login",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "auth",
-                "login"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
             }
           },
           "response": []
         },
         {
-          "name": "Refresh Session",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "if(jsonData.accessToken) {",
-                  "    pm.collectionVariables.set(\"token\", jsonData.accessToken);",
-                  "}"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
+          "name": "Refresh Token",
+          "event": [{"listen": "test", "script": {"exec": ["var jsonData = pm.response.json();", "if(jsonData.accessToken) {", "    pm.collectionVariables.set(\"token\", jsonData.accessToken);", "}"], "type": "text/javascript"}}],
           "request": {
             "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "header": [{"key": "Content-Type", "value": "application/json"}],
             "body": {
               "mode": "raw",
               "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/auth/refresh",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "auth",
-                "refresh"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "refresh"]
             }
           },
           "response": []
         },
         {
-          "name": "Logout Session",
+          "name": "Logout User",
           "request": {
             "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "header": [{"key": "Content-Type", "value": "application/json"}],
             "body": {
               "mode": "raw",
               "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/auth/logout",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "auth",
-                "logout"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "logout"]
             }
           },
           "response": []
@@ -200,270 +115,152 @@
       ]
     },
     {
-      "name": "Employees",
-      "description": "Employee management endpoints with role-based access control.\n\n🔐 ACCESS CONTROL:\n- SYSTEM_ADMIN: Full CRUD operations on all employees\n- USER_ADMIN: Create, Update, and View all employees\n- EMPLOYEE_VIEWER: Read operations + manage own profile only\n\n📄 PAGINATION:\n- Get All Employees supports: ?page=0&size=10&sortBy=id\n- Sorting options: id, firstName, lastName, email, department, salary",
+      "name": "👤 Employees",
+      "description": "Employee management endpoints with role-based access control.",
       "item": [
         {
-          "name": "Get All Employees",
+          "name": "GET - All Employees (Paginated)",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
             "method": "GET",
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/employees?page=0&size=10&sortBy=id",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "employees"
-              ],
+              "host": ["{{base_url}}"],
+              "path": ["api", "employees"],
               "query": [
-                {
-                  "key": "page",
-                  "value": "0",
-                  "description": "Page number (0-based)"
-                },
-                {
-                  "key": "size",
-                  "value": "10",
-                  "description": "Number of items per page"
-                },
-                {
-                  "key": "sortBy",
-                  "value": "id",
-                  "description": "Sort field (id, firstName, lastName, email, department, salary)"
-                },
-                {
-                  "key": "name",
-                  "value": "",
-                  "description": "Filter by Name (optional)",
-                  "disabled": true
-                },
-                {
-                  "key": "department",
-                  "value": "IT & Support",
-                  "description": "Filter by Department name (optional)",
-                  "disabled": true
-                },
-                {
-                  "key": "minSalary",
-                  "value": "50000",
-                  "description": "Minimum Salary Filter (optional)",
-                  "disabled": true
-                }
+                {"key": "page", "value": "0", "description": "Page number (0-based)"},
+                {"key": "size", "value": "10", "description": "Number of items per page"},
+                {"key": "sortBy", "value": "id", "description": "Sort field"}
               ]
             }
           },
           "response": []
         },
         {
-          "name": "Get My Profile",
+          "name": "GET - My Profile",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
             "method": "GET",
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/employees/me",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "employees",
-                "me"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["api", "employees", "me"]
             }
           },
           "response": []
         },
         {
-          "name": "Get Employee by ID",
+          "name": "GET - Employee by ID",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
             "method": "GET",
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/employees/1",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "employees",
-                "1"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["api", "employees", "1"]
             }
           },
           "response": []
         },
         {
-          "name": "Create Employee",
+          "name": "POST - Create Employee",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
             "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "header": [{"key": "Content-Type", "value": "application/json"}],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"firstName\": \"Alice\",\n    \"lastName\": \"Smith\",\n    \"email\": \"alice.smith@example.com\",\n    \"department\": \"Engineering\",\n    \"salary\": 75000.00\n}"
+              "raw": "{\n    \"firstName\": \"Hina\",\n    \"lastName\": \"Hina\",\n    \"email\": \"hina@example.com\",\n    \"department\": \"IT\",\n    \"salary\": 75050.00\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/employees",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "employees"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["api", "employees"]
             }
           },
           "response": []
         },
         {
-          "name": "Update Employee",
+          "name": "PUT - Update Employee",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
             "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "header": [{"key": "Content-Type", "value": "application/json"}],
             "body": {
               "mode": "raw",
               "raw": "{\n    \"firstName\": \"Alice\",\n    \"lastName\": \"Smith\",\n    \"email\": \"alice.smith.updated@example.com\",\n    \"department\": \"Engineering\",\n    \"salary\": 85000.00\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/employees/1",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "employees",
-                "1"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["api", "employees", "1"]
             }
           },
           "response": []
         },
         {
-          "name": "Delete Employee",
+          "name": "DELETE - Delete Employee (Soft Delete)",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
             "method": "DELETE",
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/employees/1",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "employees",
-                "1"
+              "host": ["{{base_url}}"],
+              "path": ["api", "employees", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT - Restore Employee",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/1/restore",
+              "host": ["{{base_url}}"],
+              "path": ["api", "employees", "1", "restore"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Search Employees",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/search?name=John",
+              "host": ["{{base_url}}"],
+              "path": ["api", "employees", "search"],
+              "query": [
+                {"key": "name", "value": "John", "description": "Search by first or last name"},
+                {"key": "department", "value": "Engineering", "description": "Filter by department", "disabled": true}
               ]
             }
           },
           "response": []
         },
         {
-          "name": "Upload Profile Image",
+          "name": "POST - Upload Employee Profile Image",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
             "method": "POST",
             "header": [],
             "body": {
               "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "file",
-                  "type": "file",
-                  "src": []
-                }
-              ]
+              "formdata": [{"key": "file", "type": "file", "src": []}]
             },
             "url": {
               "raw": "{{base_url}}/api/employees/1/upload",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "employees",
-                "1",
-                "upload"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["api", "employees", "1", "upload"]
             }
           },
           "response": []
@@ -471,60 +268,153 @@
       ]
     },
     {
-      "name": "Departments",
-      "description": "Department management endpoints.\n\nNOTE: These use the singular /api/departments mapping.",
+      "name": "🏢 Departments",
+      "description": "Department management endpoints for creating and managing departments.",
       "item": [
         {
-          "name": "Create Department",
+          "name": "GET - All Departments",
           "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/departments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "departments"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Create Department",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
             "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "header": [{"key": "Content-Type", "value": "application/json"}],
             "body": {
               "mode": "raw",
               "raw": "{\n    \"name\": \"IT & Support\",\n    \"description\": \"IT + Support Teams\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/departments",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "department"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["api", "departments"]
             }
           },
           "response": []
         },
         {
-          "name": "Update Department",
+          "name": "PUT - Update Department",
           "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
             "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "header": [{"key": "Content-Type", "value": "application/json"}],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"name\": \"IT & Support\",\n    \"description\": \"IT + Support Teams\"\n}"
+              "raw": "{\n    \"name\": \"IT & Support\",\n    \"description\": \"IT + Support Teams (Updated)\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/departments/1",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "department",
-                "1"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["api", "departments", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Assign Employee to Department",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"employeeId\": 1,\n    \"departmentId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/departments/1/assign-employee",
+              "host": ["{{base_url}}"],
+              "path": ["api", "departments", "1", "assign-employee"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "📁 User Files",
+      "description": "File upload and management endpoints for user profile images. Files are stored with IDs in user_files table.\n\n📌 USER-SPECIFIC FILES:\n- GET /api/users/{id}/files - Fetches ALL files belonging to a specific user\n- GET /api/users/files/{fileId} - Fetches ONE specific file\n\n📌 GLOBAL FILES:\n- GET /api/files - Fetches ALL files metadata (global)\n- GET /api/files/{fileId} - Fetches ONE specific file (global)",
+      "item": [
+        {
+          "name": "POST - Upload User Profile Image",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [{"key": "file", "type": "file", "src": []}]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/1/upload",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "1", "upload"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - User's All Files (Specific User)",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users/1/files",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "1", "files"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Specific File (User's File)",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users/files/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "files", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - All Files Metadata (Global)",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/files",
+              "host": ["{{base_url}}"],
+              "path": ["api", "files"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Specific File (Global)",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/files/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "files", "1"]
             }
           },
           "response": []
@@ -533,20 +423,8 @@
     }
   ],
   "variable": [
-    {
-      "key": "base_url",
-      "value": "http://localhost:8080",
-      "type": "string"
-    },
-    {
-      "key": "token",
-      "value": "",
-      "type": "string"
-    },
-    {
-      "key": "refreshToken",
-      "value": "",
-      "type": "string"
-    }
+    {"key": "base_url", "value": "http://localhost:8080", "type": "string"},
+    {"key": "token", "value": "", "type": "string"},
+    {"key": "refreshToken", "value": "", "type": "string"}
   ]
 }

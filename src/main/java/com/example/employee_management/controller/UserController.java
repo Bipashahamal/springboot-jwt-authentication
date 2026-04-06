@@ -2,6 +2,11 @@ package com.example.employee_management.controller;
 
 import com.example.employee_management.entity.UserFile;
 import com.example.employee_management.service.UserFileService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Encoding;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -23,19 +28,49 @@ public class UserController {
     private UserFileService userFileService;
 
     // Upload file for a specific user
-    @PostMapping("/{id}/upload")
+    @Operation(
+        summary = "Upload Profile Image for User", 
+        description = "Upload a profile image for a specific user by user ID. The file will be stored in the database and the user's profileImageId will be updated.",
+        requestBody = @RequestBody(
+            required = true,
+            content = @Content(
+                mediaType = MediaType.MULTIPART_FORM_DATA_VALUE,
+                schema = @Schema(type = "object"),
+                encoding = @Encoding(
+                    name = "file",
+                    contentType = "application/octet-stream"
+                )
+            )
+        )
+    )
+    @PostMapping(value = "/{id}/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Map<String, Object>> uploadUserFile(
             @PathVariable("id") Long id,
             @RequestParam("file") MultipartFile file) throws IOException {
 
-        UserFile userFile = userFileService.uploadFileForUser(id, file);
+        if (file.isEmpty()) {
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("error", "File is empty");
+            return ResponseEntity.badRequest().body(errorResponse);
+        }
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "File uploaded successfully for user id: " + id);
-        response.put("fileId", userFile.getId());
-        response.put("fileName", userFile.getFileName());
+        try {
+            UserFile userFile = userFileService.uploadFileForUser(id, file);
 
-        return ResponseEntity.ok(response);
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Profile image uploaded successfully");
+            response.put("userId", id);
+            response.put("fileId", userFile.getId());
+            response.put("fileName", userFile.getFileName());
+            response.put("fileType", userFile.getFileType());
+            response.put("status", "User profileImageId updated");
+
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException e) {
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("error", e.getMessage());
+            return ResponseEntity.notFound().build();
+        }
     }
 
     // Get list of files for a specific user

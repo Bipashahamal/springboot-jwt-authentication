@@ -277,12 +277,17 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
     
-    // ✅ UPDATE PROFILE IMAGE
+    // ✅ UPDATE PROFILE IMAGE IN USER TABLE
     @Transactional
-    public void updateProfileImage(Long id, String fileName) {
-        Employee employee = getEmployeeById(id);
-        employee.setProfileImage(fileName);
-        employeeRepository.save(employee);
+    public void updateProfileImage(Long employeeId, Long fileId) {
+        Employee employee = getEmployeeById(employeeId);
+        
+        // Find user by email and update their profileImageId (file ID from user_files table)
+        userRepository.findByEmail(employee.getEmail())
+                .ifPresent(user -> {
+                    user.setProfileImageId(fileId);
+                    userRepository.save(user);
+                });
     }
 
     // ✅ MONTHLY REPORT JOB

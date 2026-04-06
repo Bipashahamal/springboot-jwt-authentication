@@ -2,10 +2,14 @@ package com.example.employee_management.controller;
 
 import com.example.employee_management.dto.EmployeeRequest;
 import com.example.employee_management.entity.Employee;
-import com.example.employee_management.service.EmployeeService;
+import com.example.employee_management.entity.UserFile;
 import com.example.employee_management.service.EmployeeService;
 import com.example.employee_management.service.UserFileService;
-import com.example.employee_management.entity.UserFile;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Encoding;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 import jakarta.validation.Valid;
 
@@ -15,7 +19,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -27,14 +30,14 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
-    
+
     @Autowired
     private UserFileService userFileService;
 
     // ✅ CREATE EMPLOYEE (ADMIN only)
     @PreAuthorize("hasAuthority('CREATE_EMPLOYEE')")
     @PostMapping
-    public ResponseEntity<Map<String, String>> createEmployee(@Valid @RequestBody EmployeeRequest request) {
+    public ResponseEntity<Map<String, String>> createEmployee(@Valid @org.springframework.web.bind.annotation.RequestBody EmployeeRequest request) {
 
         employeeService.createEmployee(request);
 
@@ -90,7 +93,7 @@ public class EmployeeController {
     @PutMapping("/{id}")
     public ResponseEntity<Employee> updateEmployee(
             @PathVariable Long id,
-            @Valid @RequestBody EmployeeRequest request) {
+            @Valid @org.springframework.web.bind.annotation.RequestBody EmployeeRequest request) {
 
         return ResponseEntity.ok(employeeService.updateEmployee(id, request));
     }
@@ -115,28 +118,51 @@ public class EmployeeController {
         } else {
             return ResponseEntity.ok("Employee deleted successfully");
         }
-
     }
 
     // ✅ UPLOAD PROFILE IMAGE
+    @Operation(
+        summary = "Upload Profile Image",
+        description = "Upload a profile image for an employee. The file will be stored in the database and linked to the user account.",
+        requestBody = @RequestBody(
+            required = true,
+            content = @Content(
+                mediaType = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE,
+                schema = @Schema(type = "object"),
+                encoding = @Encoding(
+                    name = "file",
+                    contentType = "application/octet-stream"
+                )
+            )
+        )
+    )
     @PreAuthorize("hasAuthority('UPDATE_EMPLOYEE') or (hasAuthority('VIEW_EMPLOYEE') and @employeeService.isOwner(authentication.name, #id))")
-    @PostMapping(value = "/{id}/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/{id}/upload", consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Map<String, String>> uploadProfileImage(
-            @PathVariable Long id, 
+            @PathVariable Long id,
             @RequestParam("file") MultipartFile file) throws java.io.IOException {
 
+        if (file.isEmpty()) {
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("error", "File is empty");
+            return ResponseEntity.badRequest().body(errorResponse);
+        }
+
+        // Get employee
         Employee employee = employeeService.getEmployeeById(id);
+
+        // Upload file to user_files table
         UserFile userFile = userFileService.uploadFileByUserEmail(employee.getEmail(), file);
-        employeeService.updateProfileImage(id, userFile.getFileName());
+
+        // Update users.profileImageId with the file ID (not filename)
+        employeeService.updateProfileImage(id, userFile.getId());
 
         Map<String, String> response = new HashMap<>();
-        response.put("message", "Profile image uploaded and stored in database successfully");
-        response.put("profileImage", userFile.getFileName());
+        response.put("message", "Profile image uploaded successfully");
         response.put("fileId", userFile.getId().toString());
+        response.put("fileName", userFile.getFileName());
+        response.put("status", "Profile image updated in user account");
 
         return ResponseEntity.ok(response);
     }
-
-
-
 }

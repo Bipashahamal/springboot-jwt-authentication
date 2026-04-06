@@ -37,7 +37,7 @@ if (path.contains("/swagger-ui") || path.contains("/v3/api-docs")) {
 }
 
         // 🔥 Skip login/register and public endpoints
-        if (request.getServletPath().startsWith("/api/auth") || request.getServletPath().startsWith("/api/public")) {
+        if (request.getServletPath().startsWith("/api/auth") || request.getServletPath().startsWith("/api/public") || request.getServletPath().equals("/api/employees/test")) {
             filterChain.doFilter(request, response);
             return;
         }

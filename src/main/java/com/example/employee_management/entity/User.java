@@ -32,5 +32,7 @@ public class User {
 
     private boolean enabled = true;
 
+    private Long profileImageId;  // ← Store file ID from user_files table
+
     private LocalDateTime createdAt = LocalDateTime.now();
 }

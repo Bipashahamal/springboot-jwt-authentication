@@ -33,7 +33,13 @@ public class UserFileService {
                 .user(user)
                 .build();
 
-        return userFileRepository.save(userFile);
+        UserFile savedFile = userFileRepository.save(userFile);
+        
+        // Update user's profileImageId to reference this file
+        user.setProfileImageId(savedFile.getId());
+        userRepository.save(user);
+        
+        return savedFile;
     }
 
     @Transactional
@@ -58,5 +64,9 @@ public class UserFileService {
     public UserFile getFileById(Long fileId) {
         return userFileRepository.findById(fileId)
                 .orElseThrow(() -> new RuntimeException("File not found with id: " + fileId));
+    }
+
+    public List<UserFile> getAllFiles() {
+        return userFileRepository.findAll();
     }
 }
