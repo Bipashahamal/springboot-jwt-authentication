@@ -34,5 +34,7 @@ public class User {
 
     private Long profileImageId;  // ← Store file ID from user_files table
 
+    private Long employeeId; // Link to the employee profile
+
     private LocalDateTime createdAt = LocalDateTime.now();
 }

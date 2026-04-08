@@ -43,18 +43,17 @@ public class EmployeeService {
         }
 
         return createAndSaveEmployee(request.getFirstName(), request.getLastName(),
-                request.getEmail(), request.getDepartment(), request.getSalary());
+                request.getEmail(), request.getDepartmentId(), request.getSalary());
     }
 
-    private Employee createAndSaveEmployee(String firstName, String lastName, String email, String departmentName,
+    private Employee createAndSaveEmployee(String firstName, String lastName, String email, Long departmentId,
             Double salary) {
         // Resolve department entity
         Department department = null;
-        if (departmentName != null && !departmentName.isBlank() && !departmentName.equals("To be defined")) {
-            String trimmedName = departmentName.trim();
-            department = departmentRepository.findByNameOrDescriptionIgnoreCase(trimmedName)
+        if (departmentId != null) {
+            department = departmentRepository.findById(departmentId)
                     .orElseThrow(() -> new ResourceNotFoundException(
-                            "Department not found: " + trimmedName));
+                            "Department not found with id: " + departmentId));
         }
 
         Employee employee = Employee.builder()
@@ -85,7 +84,7 @@ public class EmployeeService {
         String lastName = nameParts.length > 1 ? nameParts[1] : "";
 
         return createAndSaveEmployee(firstName, lastName,
-                request.getEmail(), "To be defined", null);
+                request.getEmail(), null, null);
     }
 
     // ✅ GET ALL EMPLOYEES (SIMPLE LIST)
@@ -199,11 +198,10 @@ public class EmployeeService {
         }
 
         // Handle department update with proper entity resolution
-        if (request.getDepartment() != null && !request.getDepartment().isBlank()) {
-            String trimmedName = request.getDepartment().trim();
-            Department department = departmentRepository.findByNameOrDescriptionIgnoreCase(trimmedName)
+        if (request.getDepartmentId() != null) {
+            Department department = departmentRepository.findById(request.getDepartmentId())
                     .orElseThrow(() -> new ResourceNotFoundException(
-                            "Department not found: " + trimmedName));
+                            "Department not found with id: " + request.getDepartmentId()));
             employee.setDepartment(department);
         }
 

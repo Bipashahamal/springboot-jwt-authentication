@@ -9,8 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "user_files")
-public class UserFile {
+@Table(name = "user_profiles")
+public class UserProfile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +20,7 @@ public class UserFile {
 
     private String fileType;
 
-    @Lob
-    @Column(name = "data", columnDefinition = "LONGBLOB")
-    private byte[] data;
+    private String filePath; // ← Store the absolute path of the physical file
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

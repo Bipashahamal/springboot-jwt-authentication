@@ -20,7 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.UUID;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,7 +49,7 @@ public class AuthService {
     public ResponseEntity<Map<String, String>> register(RegisterRequest request) {
 
         // Collect errors
-        Map<String, String> errors = new HashMap<>();
+        Map<String, String> errors = new LinkedHashMap<>();
 
         // Check for duplicate email
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
@@ -86,13 +86,17 @@ public class AuthService {
             }
         }
 
+        // Delegate Employee creation to EmployeeService if Role is not SYSTEM_ADMIN
+        if (user.getRole() != Role.SYSTEM_ADMIN) {
+            com.example.employee_management.entity.Employee employee = employeeService
+                    .createEmployeeFromRegisterRequest(request);
+            user.setEmployeeId(employee.getId());
+        }
+
         userRepository.save(user);
 
-        // Delegate Employee creation to EmployeeService
-        employeeService.createEmployeeFromRegisterRequest(request);
-
         // Response
-        Map<String, String> response = new HashMap<>();
+        Map<String, String> response = new LinkedHashMap<>();
         response.put("message", "User registered successfully!");
         response.put("emailStatus", "Welcome email will be sent in the background");
 
@@ -100,7 +104,7 @@ public class AuthService {
     }
 
     // ================= LOGIN =================
-    public Map<String, String> login(LoginRequest request) {
+    public Map<String, Object> login(LoginRequest request) {
 
         // Check if user exists
         User user = userRepository.findByEmail(request.getEmail())
@@ -118,14 +122,15 @@ public class AuthService {
 
         // Generate JWT token
         String token = jwtUtil.generateToken(user.getEmail());
-        
+
         // Generate Refresh token
         RefreshToken refreshToken = createRefreshToken(user.getEmail());
 
-        Map<String, String> response = new HashMap<>();
+        Map<String, Object> response = new LinkedHashMap<>();
         response.put("accessToken", token);
         response.put("refreshToken", refreshToken.getToken());
         response.put("tokenType", "Bearer");
+        response.put("accesstokenexpiresIn", jwtUtil.getExpirationTimeFormatted());
 
         return response;
     }
@@ -156,5 +161,13 @@ public class AuthService {
     public void logout(String refreshTokenValue) {
         refreshTokenRepository.findByToken(refreshTokenValue)
                 .ifPresent(refreshTokenRepository::delete);
+    }
+
+    public long getExpirationTime() {
+        return jwtUtil.getExpirationTime();
+    }
+
+    public String getFormattedExpirationTime() {
+        return jwtUtil.getExpirationTimeFormatted();
     }
 }

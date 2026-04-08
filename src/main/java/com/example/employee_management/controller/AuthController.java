@@ -10,7 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @RestController
@@ -32,20 +32,20 @@ public class AuthController {
 
     // LOGIN
     @PostMapping("/login")
-    public Map<String, String> login(@RequestBody LoginRequest request) {
+    public Map<String, Object> login(@RequestBody LoginRequest request) {
 
         return authService.login(request);
     }
 
-
     @PostMapping("/refresh")
-    public ResponseEntity<Map<String, String>> refreshSession(@Valid @RequestBody RefreshTokenRequest request) {
+    public ResponseEntity<Map<String, Object>> refreshSession(@Valid @RequestBody RefreshTokenRequest request) {
         String newAccessToken = authService.refreshAccessToken(request.getRefreshToken());
-        
-        Map<String, String> response = new HashMap<>();
+
+        Map<String, Object> response = new LinkedHashMap<>();
         response.put("accessToken", newAccessToken);
         response.put("tokenType", "Bearer");
-        
+        response.put("accesstokenexpiresIn", authService.getFormattedExpirationTime());
+
         return ResponseEntity.ok(response);
     }
 

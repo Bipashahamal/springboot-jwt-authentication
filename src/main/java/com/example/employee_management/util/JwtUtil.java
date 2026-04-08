@@ -51,4 +51,12 @@ public class JwtUtil {
             return false;
         }
     }
+
+    public long getExpirationTime() {
+        return jwtProperties.getExpiration();
+    }
+
+    public String getExpirationTimeFormatted() {
+        return jwtProperties.getExpirationHumanReadable();
+    }
 }

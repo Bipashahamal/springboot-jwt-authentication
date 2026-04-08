@@ -1,7 +1,7 @@
 package com.example.employee_management.controller;
 
-import com.example.employee_management.entity.UserFile;
-import com.example.employee_management.service.UserFileService;
+import com.example.employee_management.entity.UserProfile;
+import com.example.employee_management.service.UserProfileService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Encoding;
@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -25,7 +27,7 @@ import java.util.stream.Collectors;
 public class UserController {
 
     @Autowired
-    private UserFileService userFileService;
+    private UserProfileService userProfileService;
 
     // Upload file for a specific user
     @Operation(
@@ -55,14 +57,15 @@ public class UserController {
         }
 
         try {
-            UserFile userFile = userFileService.uploadFileForUser(id, file);
+            UserProfile userProfile = userProfileService.uploadFileForUser(id, file);
 
             Map<String, Object> response = new HashMap<>();
             response.put("message", "Profile image uploaded successfully");
             response.put("userId", id);
-            response.put("fileId", userFile.getId());
-            response.put("fileName", userFile.getFileName());
-            response.put("fileType", userFile.getFileType());
+            response.put("fileId", userProfile.getId());
+            response.put("fileName", userProfile.getFileName());
+            response.put("fileType", userProfile.getFileType());
+            response.put("filePath", userProfile.getFilePath()); // Added link as requested
             response.put("status", "User profileImageId updated");
 
             return ResponseEntity.ok(response);
@@ -73,16 +76,17 @@ public class UserController {
         }
     }
 
-    // Get list of files for a specific user
+    // Get list of profiles for a specific user
     @GetMapping("/{id}/files")
-    public ResponseEntity<List<Map<String, Object>>> getUserFiles(@PathVariable("id") Long id) {
-        List<UserFile> files = userFileService.getUserFiles(id);
+    public ResponseEntity<List<Map<String, Object>>> getUserProfiles(@PathVariable("id") Long id) {
+        List<UserProfile> files = userProfileService.getUserProfiles(id);
         
         List<Map<String, Object>> response = files.stream().map(file -> {
             Map<String, Object> map = new HashMap<>();
             map.put("fileId", file.getId());
             map.put("fileName", file.getFileName());
             map.put("fileType", file.getFileType());
+            map.put("filePath", file.getFilePath()); // Added link as requested
             return map;
         }).collect(Collectors.toList());
 
@@ -91,12 +95,15 @@ public class UserController {
 
     // Download/View file content
     @GetMapping("/files/{fileId}")
-    public ResponseEntity<byte[]> getFile(@PathVariable("fileId") Long fileId) {
-        UserFile userFile = userFileService.getFileById(fileId);
+    public ResponseEntity<byte[]> getFile(@PathVariable("fileId") Long fileId) throws IOException {
+        UserProfile userProfile = userProfileService.getFileById(fileId);
+
+        byte[] fileContent = Files.readAllBytes(Paths.get(userProfile.getFilePath()));
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + userFile.getFileName() + "\"")
-                .contentType(MediaType.parseMediaType(userFile.getFileType()))
-                .body(userFile.getData());
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + userProfile.getFileName() + "\"")
+                .contentType(MediaType.parseMediaType(userProfile.getFileType()))
+                .body(fileContent);
     }
 }
+

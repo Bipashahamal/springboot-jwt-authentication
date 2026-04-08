@@ -4,6 +4,7 @@ import com.example.employee_management.controller.EmployeeController;
 import com.example.employee_management.entity.Department;
 import com.example.employee_management.entity.Employee;
 import com.example.employee_management.service.EmployeeService;
+import com.example.employee_management.service.UserProfileService;
 import com.example.employee_management.security.CustomUserDetailsService;
 import com.example.employee_management.security.RateLimitingFilter;
 import com.example.employee_management.util.JwtUtil;
@@ -35,7 +36,7 @@ public class EmployeeDebugControllerTest {
     private EmployeeService employeeService;
 
     @MockBean
-    private FileService fileService;
+    private UserProfileService userProfileService;
 
     @MockBean
     private JwtUtil jwtUtil;

@@ -2,9 +2,9 @@ package com.example.employee_management.controller;
 
 import com.example.employee_management.dto.EmployeeRequest;
 import com.example.employee_management.entity.Employee;
-import com.example.employee_management.entity.UserFile;
+import com.example.employee_management.entity.UserProfile;
 import com.example.employee_management.service.EmployeeService;
-import com.example.employee_management.service.UserFileService;
+import com.example.employee_management.service.UserProfileService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Encoding;
@@ -32,7 +32,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @Autowired
-    private UserFileService userFileService;
+    private UserProfileService userProfileService;
 
     // ✅ CREATE EMPLOYEE (ADMIN only)
     @PreAuthorize("hasAuthority('CREATE_EMPLOYEE')")
@@ -123,7 +123,7 @@ public class EmployeeController {
     // ✅ UPLOAD PROFILE IMAGE
     @Operation(
         summary = "Upload Profile Image",
-        description = "Upload a profile image for an employee. The file will be stored in the database and linked to the user account.",
+        description = "Upload a profile image for an employee. The file will be stored on the local system and linked to the user account.",
         requestBody = @RequestBody(
             required = true,
             content = @Content(
@@ -151,16 +151,17 @@ public class EmployeeController {
         // Get employee
         Employee employee = employeeService.getEmployeeById(id);
 
-        // Upload file to user_files table
-        UserFile userFile = userFileService.uploadFileByUserEmail(employee.getEmail(), file);
+        // Upload file and save link to user_profiles table
+        UserProfile userProfile = userProfileService.uploadFileByUserEmail(employee.getEmail(), file);
 
-        // Update users.profileImageId with the file ID (not filename)
-        employeeService.updateProfileImage(id, userFile.getId());
+        // Update users.profileImageId with the profile ID
+        employeeService.updateProfileImage(id, userProfile.getId());
 
         Map<String, String> response = new HashMap<>();
         response.put("message", "Profile image uploaded successfully");
-        response.put("fileId", userFile.getId().toString());
-        response.put("fileName", userFile.getFileName());
+        response.put("fileId", userProfile.getId().toString());
+        response.put("fileName", userProfile.getFileName());
+        response.put("filePath", userProfile.getFilePath()); // Added link as requested
         response.put("status", "Profile image updated in user account");
 
         return ResponseEntity.ok(response);
