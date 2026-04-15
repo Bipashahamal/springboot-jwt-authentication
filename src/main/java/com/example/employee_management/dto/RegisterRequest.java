@@ -22,4 +22,6 @@ public class RegisterRequest {
 
     @NotNull
     private String role;
+
+    private Long employeeId;
 }

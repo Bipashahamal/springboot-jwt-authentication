@@ -3,11 +3,6 @@ package com.example.employee_management.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 @Data
 @Builder
@@ -24,8 +19,5 @@ public class Department {
 
     private String description;
 
-    @Builder.Default
-    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<Employee> employees = new ArrayList<>();
+
 }

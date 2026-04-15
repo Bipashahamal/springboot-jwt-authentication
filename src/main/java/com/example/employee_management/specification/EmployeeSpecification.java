@@ -29,11 +29,6 @@ public class EmployeeSpecification {
                 : cb.like(cb.lower(root.get("email")), "%" + email.trim().toLowerCase() + "%");
     }
 
-    public static Specification<Employee> departmentEquals(String department) {
-        return (root, query, cb) -> (department == null || department.trim().isEmpty()) ? null
-                : cb.equal(cb.lower(root.get("department").get("name")), department.trim().toLowerCase());
-    }
-
     public static Specification<Employee> salaryGreaterThan(Double minSalary) {
         return (root, query, cb) -> minSalary == null ? null : cb.greaterThanOrEqualTo(root.get("salary"), minSalary);
     }

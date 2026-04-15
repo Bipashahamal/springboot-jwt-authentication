@@ -28,14 +28,6 @@ public class UserProfileService {
     private UserRepository userRepository;
 
     @Transactional
-    public UserProfile uploadFileForUser(Long userId, MultipartFile file) throws IOException {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
-
-        return processAndSaveFile(user, file, true);
-    }
-
-    @Transactional
     public UserProfile uploadFileByUserEmail(String email, MultipartFile file) throws IOException {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
@@ -43,7 +35,8 @@ public class UserProfileService {
         return processAndSaveFile(user, file, false);
     }
 
-    private UserProfile processAndSaveFile(User user, MultipartFile file, boolean isPrimaryProfileImage) throws IOException {
+    private UserProfile processAndSaveFile(User user, MultipartFile file, boolean isPrimaryProfileImage)
+            throws IOException {
         Path uploadPath = Paths.get(UPLOAD_DIR);
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
@@ -51,7 +44,7 @@ public class UserProfileService {
 
         String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
         Path filePath = uploadPath.resolve(fileName);
-        
+
         // Save physically to disk
         Files.write(filePath, file.getBytes());
 
@@ -63,13 +56,13 @@ public class UserProfileService {
                 .build();
 
         UserProfile savedFile = userProfileRepository.save(userProfile);
-        
+
         if (isPrimaryProfileImage) {
             // Update user's profileImageId to reference this file
             user.setProfileImageId(savedFile.getId());
             userRepository.save(user);
         }
-        
+
         return savedFile;
     }
 
@@ -84,5 +77,13 @@ public class UserProfileService {
 
     public List<UserProfile> getAllFiles() {
         return userProfileRepository.findAll();
+    }
+
+    @Transactional
+    public UserProfile uploadFileForUser(Long id, MultipartFile file) throws IOException {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+
+        return processAndSaveFile(user, file, true);
     }
 }

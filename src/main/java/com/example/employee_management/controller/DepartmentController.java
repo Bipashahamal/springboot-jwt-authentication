@@ -34,11 +34,4 @@ public class DepartmentController {
     public ResponseEntity<List<Department>> getDepartments() {
         return ResponseEntity.ok(departmentService.getAllDepartments());
     }
-
-    // Assign Employees to Department
-    @PostMapping("/{id}/employees")
-    public ResponseEntity<Department> assignEmployees(@PathVariable Long id,
-            @RequestBody List<Long> employeeIds) {
-        return ResponseEntity.ok(departmentService.assignEmployees(id, employeeIds));
-    }
 }

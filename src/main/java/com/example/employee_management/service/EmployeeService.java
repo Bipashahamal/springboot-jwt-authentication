@@ -3,13 +3,11 @@ package com.example.employee_management.service;
 import com.example.employee_management.dto.EmployeeRequest;
 import com.example.employee_management.dto.RegisterRequest;
 import com.example.employee_management.entity.Employee;
-import com.example.employee_management.entity.Department;
 import com.example.employee_management.exception.ResourceNotFoundException;
 import com.example.employee_management.exception.DuplicateEmailException;
 import com.example.employee_management.repository.EmployeeRepository;
 import com.example.employee_management.repository.UserRepository;
 import com.example.employee_management.specification.EmployeeSpecification;
-import com.example.employee_management.repository.DepartmentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,9 +30,6 @@ public class EmployeeService {
     @Autowired
     private EmailService emailService;
 
-    @Autowired
-    private DepartmentRepository departmentRepository;
-
     // ✅ CREATE EMPLOYEE FROM EmployeeRequest
     public Employee createEmployee(EmployeeRequest request) {
 
@@ -43,24 +38,14 @@ public class EmployeeService {
         }
 
         return createAndSaveEmployee(request.getFirstName(), request.getLastName(),
-                request.getEmail(), request.getDepartmentId(), request.getSalary());
+                request.getEmail(), request.getSalary());
     }
 
-    private Employee createAndSaveEmployee(String firstName, String lastName, String email, Long departmentId,
-            Double salary) {
-        // Resolve department entity
-        Department department = null;
-        if (departmentId != null) {
-            department = departmentRepository.findById(departmentId)
-                    .orElseThrow(() -> new ResourceNotFoundException(
-                            "Department not found with id: " + departmentId));
-        }
-
+    private Employee createAndSaveEmployee(String firstName, String lastName, String email, Double salary) {
         Employee employee = Employee.builder()
                 .firstName(firstName)
                 .lastName(lastName)
                 .email(email)
-                .department(department)
                 .salary(salary)
                 .createdAt(LocalDateTime.now())
                 .build();
@@ -75,18 +60,6 @@ public class EmployeeService {
         return savedEmployee;
     }
 
-    // ✅ CREATE EMPLOYEE FROM RegisterRequest (used during user registration)
-    public Employee createEmployeeFromRegisterRequest(RegisterRequest request) {
-
-        String fullPath = request.getName().trim();
-        String[] nameParts = fullPath.split("\\s+", 2);
-        String firstName = nameParts[0];
-        String lastName = nameParts.length > 1 ? nameParts[1] : "";
-
-        return createAndSaveEmployee(firstName, lastName,
-                request.getEmail(), null, null);
-    }
-
     // ✅ GET ALL EMPLOYEES (SIMPLE LIST)
     public List<Employee> getAllEmployeesList() {
         return employeeRepository.findByIsDeletedFalse();
@@ -94,7 +67,7 @@ public class EmployeeService {
 
     // ✅ GET ALL EMPLOYEES (excluding deleted)
     public Page<Employee> getAllEmployees(int page, int size, String sortBy,
-            String name, String email, String department, Double minSalary, Double maxSalary) {
+            String name, String email, Double minSalary, Double maxSalary) {
 
         String normalizedSortBy = normalizeSortProperty(sortBy);
         Pageable pageable = PageRequest.of(page, size, Sort.by(normalizedSortBy));
@@ -102,7 +75,6 @@ public class EmployeeService {
         Specification<Employee> spec = EmployeeSpecification.isNotDeleted()
                 .and(EmployeeSpecification.nameContains(name))
                 .and(EmployeeSpecification.emailContains(email))
-                .and(EmployeeSpecification.departmentEquals(department))
                 .and(EmployeeSpecification.salaryGreaterThan(minSalary))
                 .and(EmployeeSpecification.salaryLessThan(maxSalary));
 
@@ -131,8 +103,6 @@ public class EmployeeService {
                 return "email";
             case "salary":
                 return "salary";
-            case "department":
-                return "department.name"; // Sort by department name instead of the whole entity
             case "createdat":
                 return "createdAt";
             default:
@@ -176,7 +146,6 @@ public class EmployeeService {
      * conversion.
      * This method handles:
      * - Null safety checks
-     * - Department entity resolution
      * - Selective field updates (only changed fields)
      * - Audit trail maintenance
      *
@@ -195,14 +164,6 @@ public class EmployeeService {
 
         if (request.getEmail() != null && !request.getEmail().isBlank()) {
             employee.setEmail(request.getEmail().trim().toLowerCase());
-        }
-
-        // Handle department update with proper entity resolution
-        if (request.getDepartmentId() != null) {
-            Department department = departmentRepository.findById(request.getDepartmentId())
-                    .orElseThrow(() -> new ResourceNotFoundException(
-                            "Department not found with id: " + request.getDepartmentId()));
-            employee.setDepartment(department);
         }
 
         // Update salary with validation
@@ -233,22 +194,10 @@ public class EmployeeService {
     }
 
     // ✅ DELETE EMPLOYEE
-    // SOFT DELETE EMPLOYEE
-    public Employee deleteEmployee(Long id) {
-
+    // ✅ DELETE EMPLOYEE (HARD DELETE)
+    public void deleteEmployee(Long id) {
         Employee employee = getEmployeeById(id);
-
-        // Disable user account instead of deleting
-        userRepository.findByEmail(employee.getEmail())
-                .ifPresent(user -> {
-                    user.setEnabled(false);
-                    userRepository.save(user);
-                });
-
-        // Soft delete employee
-        employee.setDeleted(true);
-
-        return employeeRepository.save(employee);
+        employeeRepository.delete(employee);
     }
 
     // ✅ CHECK OWNER
@@ -265,15 +214,7 @@ public class EmployeeService {
                         "Employee profile not found or has been deleted."));
     }
 
-    public Employee restoreEmployee(Long id) {
 
-        Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not found"));
-
-        employee.setDeleted(false);
-
-        return employeeRepository.save(employee);
-    }
     
     // ✅ UPDATE PROFILE IMAGE IN USER TABLE
     @Transactional

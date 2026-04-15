@@ -57,6 +57,20 @@ public class JwtUtil {
     }
 
     public String getExpirationTimeFormatted() {
-        return jwtProperties.getExpirationHumanReadable();
+        long expirationMs = jwtProperties.getExpiration();
+        long seconds = expirationMs / 1000;
+        long minutes = seconds / 60;
+        long hours   = minutes / 60;
+        long days    = hours   / 24;
+
+        if (days > 0) {
+            return days + " day(s)";
+        } else if (hours > 0) {
+            return hours + " hour(s)";
+        } else if (minutes > 0) {
+            return minutes + " minute(s)";
+        } else {
+            return seconds + " second(s)";
+        }
     }
 }

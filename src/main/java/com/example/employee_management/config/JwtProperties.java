@@ -52,19 +52,5 @@ public class JwtProperties {
         }
     }
 
-    /**
-     * Returns a human-readable string of the expiration.
-     */
-    public String getExpirationHumanReadable() {
-        long hours = expiration.toHours();
-        long minutes = expiration.toMinutesPart();
-
-        if (hours > 0) {
-            return hours + " hour" + (hours > 1 ? "s" : "");
-        } else if (minutes > 0) {
-            return minutes + " minute" + (minutes > 1 ? "s" : "");
-        } else {
-            return expiration.toMillis() + " ms";
-        }
-    }
+    
 }

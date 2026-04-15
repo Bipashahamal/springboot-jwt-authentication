@@ -86,11 +86,11 @@ public class AuthService {
             }
         }
 
-        // Delegate Employee creation to EmployeeService if Role is not SYSTEM_ADMIN
-        if (user.getRole() != Role.SYSTEM_ADMIN) {
-            com.example.employee_management.entity.Employee employee = employeeService
-                    .createEmployeeFromRegisterRequest(request);
-            user.setEmployeeId(employee.getId());
+        // Link to existing employee if employeeId is provided
+        if (request.getEmployeeId() != null) {
+            // Verify employee existence
+            employeeService.getEmployeeById(request.getEmployeeId());
+            user.setEmployeeId(request.getEmployeeId());
         }
 
         userRepository.save(user);
@@ -130,7 +130,7 @@ public class AuthService {
         response.put("accessToken", token);
         response.put("refreshToken", refreshToken.getToken());
         response.put("tokenType", "Bearer");
-        response.put("accesstokenexpiresIn", jwtUtil.getExpirationTimeFormatted());
+        response.put("accesstokenexpiresIn", jwtUtil.getExpirationTime());
 
         return response;
     }
@@ -169,5 +169,12 @@ public class AuthService {
 
     public String getFormattedExpirationTime() {
         return jwtUtil.getExpirationTimeFormatted();
+    }
+
+    @Transactional
+    public void deleteUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+        userRepository.delete(user);
     }
 }

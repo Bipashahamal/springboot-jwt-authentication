@@ -10,12 +10,6 @@ import java.util.Optional;
 
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
 
-    @EntityGraph(attributePaths = {"employees"})
-    List<Department> findAll();
-
-    @EntityGraph(attributePaths = {"employees"})
-    Optional<Department> findById(Long id);
-
     Optional<Department> findByName(String name);
     Optional<Department> findByNameIgnoreCase(String name);
 

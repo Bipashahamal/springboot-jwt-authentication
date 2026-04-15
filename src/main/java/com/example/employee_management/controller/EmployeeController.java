@@ -57,11 +57,10 @@ public class EmployeeController {
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String email,
-            @RequestParam(required = false) String department,
             @RequestParam(required = false) Double minSalary,
             @RequestParam(required = false) Double maxSalary) {
 
-        return ResponseEntity.ok(employeeService.getAllEmployees(page, size, sortBy, name, email, department, minSalary, maxSalary));
+        return ResponseEntity.ok(employeeService.getAllEmployees(page, size, sortBy, name, email, minSalary, maxSalary));
     }
 
     // ✅ GET ALL (NON-PAGINATED)
@@ -98,11 +97,7 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.updateEmployee(id, request));
     }
 
-    @PreAuthorize("hasAuthority('UPDATE_EMPLOYEE')")
-    @PutMapping("/{id}/restore")
-    public ResponseEntity<Employee> restoreEmployee(@PathVariable Long id) {
-        return ResponseEntity.ok(employeeService.restoreEmployee(id));
-    }
+
 
     // ✅ DELETE EMPLOYEE
     @PreAuthorize("hasAuthority('DELETE_EMPLOYEE') or (hasAuthority('VIEW_EMPLOYEE') and @employeeService.isOwner(authentication.name, #id))")
@@ -111,13 +106,8 @@ public class EmployeeController {
             @PathVariable Long id,
             org.springframework.security.core.Authentication authentication) {
 
-        Employee deletedEmployee = employeeService.deleteEmployee(id);
-
-        if (deletedEmployee.getEmail().equalsIgnoreCase(authentication.getName())) {
-            return ResponseEntity.ok("You deleted your data successfully");
-        } else {
-            return ResponseEntity.ok("Employee deleted successfully");
-        }
+        employeeService.deleteEmployee(id);
+        return ResponseEntity.ok("Employee deleted successfully");
     }
 
     // ✅ UPLOAD PROFILE IMAGE

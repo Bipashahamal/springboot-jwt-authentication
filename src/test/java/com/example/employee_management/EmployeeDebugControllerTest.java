@@ -1,7 +1,6 @@
 package com.example.employee_management;
 
 import com.example.employee_management.controller.EmployeeController;
-import com.example.employee_management.entity.Department;
 import com.example.employee_management.entity.Employee;
 import com.example.employee_management.service.EmployeeService;
 import com.example.employee_management.service.UserProfileService;
@@ -59,18 +58,11 @@ public class EmployeeDebugControllerTest {
     @WithMockUser
     public void testGetEmployeeByIdSerialization() throws Exception {
         // Setup mock data
-        Department dept = Department.builder()
-                .id(1L)
-                .name("IT")
-                .description("IT Department")
-                .build();
-
         Employee emp = Employee.builder()
                 .id(15L)
                 .firstName("John")
                 .lastName("Doe")
                 .email("john.doe@example.com")
-                .department(dept)
                 .salary(50000.0)
                 .build();
 

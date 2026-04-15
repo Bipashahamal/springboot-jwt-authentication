@@ -29,22 +29,11 @@ public class UserController {
     @Autowired
     private UserProfileService userProfileService;
 
+    @Autowired
+    private com.example.employee_management.service.AuthService authService;
+
     // Upload file for a specific user
-    @Operation(
-        summary = "Upload Profile Image for User", 
-        description = "Upload a profile image for a specific user by user ID. The file will be stored in the database and the user's profileImageId will be updated.",
-        requestBody = @RequestBody(
-            required = true,
-            content = @Content(
-                mediaType = MediaType.MULTIPART_FORM_DATA_VALUE,
-                schema = @Schema(type = "object"),
-                encoding = @Encoding(
-                    name = "file",
-                    contentType = "application/octet-stream"
-                )
-            )
-        )
-    )
+    @Operation(summary = "Upload Profile Image for User", description = "Upload a profile image for a specific user by user ID. The file will be stored in the database and the user's profileImageId will be updated.", requestBody = @RequestBody(required = true, content = @Content(mediaType = MediaType.MULTIPART_FORM_DATA_VALUE, schema = @Schema(type = "object"), encoding = @Encoding(name = "file", contentType = "application/octet-stream"))))
     @PostMapping(value = "/{id}/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Map<String, Object>> uploadUserFile(
             @PathVariable("id") Long id,
@@ -72,7 +61,7 @@ public class UserController {
         } catch (RuntimeException e) {
             Map<String, Object> errorResponse = new HashMap<>();
             errorResponse.put("error", e.getMessage());
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(404).body(errorResponse);
         }
     }
 
@@ -80,7 +69,7 @@ public class UserController {
     @GetMapping("/{id}/files")
     public ResponseEntity<List<Map<String, Object>>> getUserProfiles(@PathVariable("id") Long id) {
         List<UserProfile> files = userProfileService.getUserProfiles(id);
-        
+
         List<Map<String, Object>> response = files.stream().map(file -> {
             Map<String, Object> map = new HashMap<>();
             map.put("fileId", file.getId());
@@ -105,5 +94,12 @@ public class UserController {
                 .contentType(MediaType.parseMediaType(userProfile.getFileType()))
                 .body(fileContent);
     }
-}
 
+    // ✅ DELETE USER (ADMIN ONLY)
+    @org.springframework.security.access.prepost.PreAuthorize("hasAuthority('SYSTEM_ADMIN')")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        authService.deleteUser(id);
+        return ResponseEntity.ok("User deleted successfully");
+    }
+}

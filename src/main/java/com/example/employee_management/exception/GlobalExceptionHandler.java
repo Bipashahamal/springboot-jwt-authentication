@@ -3,6 +3,7 @@ package com.example.employee_management.exception;
 import org.springframework.http.*;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -58,6 +59,13 @@ public class GlobalExceptionHandler {
         String message = String.join(", ", ex.getErrors().values());
         Map<String, Object> body = buildResponse(HttpStatus.BAD_REQUEST, message);
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<?> handleJsonParseError(HttpMessageNotReadableException ex) {
+        return new ResponseEntity<>(
+                buildResponse(HttpStatus.BAD_REQUEST, "Malformed JSON request: " + ex.getMostSpecificCause().getMessage()),
+                HttpStatus.BAD_REQUEST);
     }
 
     // Catch-all to expose the 500 error details

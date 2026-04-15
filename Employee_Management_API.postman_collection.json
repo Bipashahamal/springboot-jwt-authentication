@@ -5,10 +5,23 @@
     "description": "Complete collection for Employee Management System APIs with JWT Authentication.\n\n🔐 AUTHENTICATION:\n- Register users (automatically creates employee profile)\n- Login to get JWT token\n- Refresh token to extend session\n- Logout to invalidate refresh token\n- Use Bearer token for secured endpoints\n\n📱 REGISTRATION REQUIREMENTS:\n- Name: Minimum 3 characters\n- Email: Valid email format\n- Password: Minimum 6 characters\n- Phone Number: Exactly 10 digits (optional)\n- Role: SYSTEM_ADMIN, USER_ADMIN, or EMPLOYEE_VIEWER\n\n👤 EMPLOYEE MANAGEMENT:\n- Paginated employee listing\n- Get own profile (/me)\n- CRUD operations with role-based access\n- Restore soft-deleted employees\n- Search employees by name or department\n- Upload profile images (stores file ID)\n- SYSTEM_ADMIN: Full access\n- USER_ADMIN: Create, Update, View access\n- EMPLOYEE_VIEWER: Read access + own profile management\n\n📝 CREATE EMPLOYEE REQUIREMENTS:\n- firstName: Required, string\n- lastName: Optional, string\n- email: Required, valid email format\n- department: Required, string (department name)\n- salary: Required, positive number\n\n🏢 DEPARTMENT MANAGEMENT:\n- Create, Read, Update departments\n- Assign employees to departments\n\n📁 FILE MANAGEMENT:\n- Upload profile images for users\n- Get all files metadata\n- Download specific files\n\n🌐 PUBLIC ENDPOINTS:\n- Health check (/api/public/health)\n- API information (/api/public/info)\n\n📧 FEATURES:\n- Async welcome email sending\n- Duplicate prevention (email & phone)\n- Input validation\n- Comprehensive error handling\n- File upload with automatic profile linking",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
   "item": [
     {
       "name": "🌐 Public",
       "description": "Public endpoints that don't require authentication.",
+      "auth": {
+        "type": "noauth"
+      },
       "item": [
         {
           "name": "Health Check",
@@ -53,6 +66,9 @@
     {
       "name": "🔐 Auth",
       "description": "Authentication endpoints for user registration and login. JWT tokens are automatically saved to collection variables.",
+      "auth": {
+        "type": "noauth"
+      },
       "item": [
         {
           "name": "Register User",
@@ -66,7 +82,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"phoneNumber\": \"9876543210\",\n  \"role\": \"SYSTEM_ADMIN\"\n}"
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"phoneNumber\": \"9516543261\",\n  \"role\": \"USER_ADMIN\",\n  \"employeeId\": 1\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/auth/register",
@@ -206,16 +222,6 @@
         {
           "name": "GET - All Employees (Paginated)",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "GET",
             "header": [],
             "url": {
@@ -251,16 +257,6 @@
         {
           "name": "GET - My Profile",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "GET",
             "header": [],
             "url": {
@@ -280,16 +276,6 @@
         {
           "name": "GET - Employee by ID",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "GET",
             "header": [],
             "url": {
@@ -309,16 +295,6 @@
         {
           "name": "POST - Create Employee",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "POST",
             "header": [
               {
@@ -346,16 +322,6 @@
         {
           "name": "PUT - Update Employee",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "PUT",
             "header": [
               {
@@ -382,18 +348,8 @@
           "response": []
         },
         {
-          "name": "DELETE - Delete Employee (Soft Delete)",
+          "name": "DELETE - Delete Employee (Hard Delete)",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "DELETE",
             "header": [],
             "url": {
@@ -411,48 +367,8 @@
           "response": []
         },
         {
-          "name": "PUT - Restore Employee",
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "PUT",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/employees/1/restore",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "employees",
-                "1",
-                "restore"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "GET - Search Employees",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "GET",
             "header": [],
             "url": {
@@ -491,16 +407,6 @@
         {
           "name": "GET - All Departments",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "GET",
             "header": [],
             "url": {
@@ -519,16 +425,6 @@
         {
           "name": "POST - Create Department",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "POST",
             "header": [
               {
@@ -556,16 +452,6 @@
         {
           "name": "PUT - Update Department",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "PUT",
             "header": [
               {
@@ -590,8 +476,7 @@
             }
           },
           "response": []
-        },
-        {}
+        }
       ]
     },
     {
@@ -601,16 +486,6 @@
         {
           "name": "POST - Upload User Profile Image",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "POST",
             "header": [],
             "body": {
@@ -641,16 +516,6 @@
         {
           "name": "GET - User's All Files (Specific User)",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "GET",
             "header": [],
             "url": {
@@ -671,16 +536,6 @@
         {
           "name": "GET - Specific File (User's File)",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "GET",
             "header": [],
             "url": {
@@ -691,63 +546,6 @@
               "path": [
                 "api",
                 "users",
-                "files",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "GET - All Files Metadata (Global)",
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/files",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "files"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "GET - Specific File (Global)",
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token}}",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/files/1",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
                 "files",
                 "1"
               ]
