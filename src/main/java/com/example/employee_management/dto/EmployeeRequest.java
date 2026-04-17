@@ -16,4 +16,7 @@ public class EmployeeRequest {
 
     @Positive(message = "Salary must be positive")
     private Double salary;
+
+    @NotNull(message = "Department ID is mandatory")
+    private Long departmentId;
 }

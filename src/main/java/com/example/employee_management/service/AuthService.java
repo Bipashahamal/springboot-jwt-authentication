@@ -62,6 +62,25 @@ public class AuthService {
             errors.put("phoneNumber", "Phone number already exists!");
         }
 
+        // Determine Role
+        Role userRole = Role.EMPLOYEE_VIEWER;
+        if (request.getRole() != null) {
+            try {
+                userRole = Role.valueOf(request.getRole().toUpperCase());
+            } catch (IllegalArgumentException e) {
+                errors.put("role", "Invalid role: " + request.getRole() + ". Valid roles are: SYSTEM_ADMIN, USER_ADMIN, EMPLOYEE_VIEWER");
+            }
+        }
+
+        // Validate employeeId based on role
+        if (!errors.containsKey("role")) {
+            if (userRole == Role.SYSTEM_ADMIN && request.getEmployeeId() != null) {
+                errors.put("employeeId", "employeeId must not be provided for SYSTEM_ADMIN");
+            } else if (userRole != Role.SYSTEM_ADMIN && request.getEmployeeId() == null) {
+                errors.put("employeeId", "employeeId is mandatory for role: " + userRole.name());
+            }
+        }
+
         // If there are errors, throw RegistrationException
         if (!errors.isEmpty()) {
             throw new RegistrationException(errors);
@@ -73,18 +92,7 @@ public class AuthService {
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setPhoneNumber(request.getPhoneNumber());
-
-        // Default role is EMPLOYEE_VIEWER if not specified
-        if (request.getRole() == null) {
-            user.setRole(Role.EMPLOYEE_VIEWER);
-        } else {
-            try {
-                user.setRole(Role.valueOf(request.getRole().toUpperCase()));
-            } catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException("Invalid role: " + request.getRole() +
-                        ". Valid roles are: SYSTEM_ADMIN, USER_ADMIN, EMPLOYEE_VIEWER");
-            }
-        }
+        user.setRole(userRole);
 
         // Link to existing employee if employeeId is provided
         if (request.getEmployeeId() != null) {

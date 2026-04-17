@@ -60,8 +60,8 @@ public class JwtUtil {
         long expirationMs = jwtProperties.getExpiration();
         long seconds = expirationMs / 1000;
         long minutes = seconds / 60;
-        long hours   = minutes / 60;
-        long days    = hours   / 24;
+        long hours = minutes / 60;
+        long days = hours / 24;
 
         if (days > 0) {
             return days + " day(s)";

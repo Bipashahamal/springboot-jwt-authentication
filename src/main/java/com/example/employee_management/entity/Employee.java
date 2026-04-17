@@ -26,6 +26,10 @@ public class Employee {
 
     private Double salary;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "department_id", nullable = false)
+    private Department department;
+
     @Builder.Default
     @Column(name = "is_deleted", nullable = false, columnDefinition = "BIT(1) DEFAULT 0")
     private boolean isDeleted = false;

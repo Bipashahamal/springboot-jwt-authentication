@@ -7,6 +7,8 @@ import com.example.employee_management.exception.ResourceNotFoundException;
 import com.example.employee_management.exception.DuplicateEmailException;
 import com.example.employee_management.repository.EmployeeRepository;
 import com.example.employee_management.repository.UserRepository;
+import com.example.employee_management.repository.DepartmentRepository;
+import com.example.employee_management.entity.Department;
 import com.example.employee_management.specification.EmployeeSpecification;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class EmployeeService {
     private UserRepository userRepository;
 
     @Autowired
+    private DepartmentRepository departmentRepository;
+
+    @Autowired
     private EmailService emailService;
 
     // ✅ CREATE EMPLOYEE FROM EmployeeRequest
@@ -37,16 +42,20 @@ public class EmployeeService {
             throw new DuplicateEmailException("Email already exists");
         }
 
+        Department department = departmentRepository.findById(request.getDepartmentId())
+                .orElseThrow(() -> new ResourceNotFoundException("Department not found with id: " + request.getDepartmentId()));
+
         return createAndSaveEmployee(request.getFirstName(), request.getLastName(),
-                request.getEmail(), request.getSalary());
+                request.getEmail(), request.getSalary(), department);
     }
 
-    private Employee createAndSaveEmployee(String firstName, String lastName, String email, Double salary) {
+    private Employee createAndSaveEmployee(String firstName, String lastName, String email, Double salary, Department department) {
         Employee employee = Employee.builder()
                 .firstName(firstName)
                 .lastName(lastName)
                 .email(email)
                 .salary(salary)
+                .department(department)
                 .createdAt(LocalDateTime.now())
                 .build();
 
@@ -170,6 +179,13 @@ public class EmployeeService {
         if (request.getSalary() != null && request.getSalary() > 0) {
             employee.setSalary(request.getSalary());
         }
+
+        // Update department with validation
+        if (request.getDepartmentId() != null) {
+            Department department = departmentRepository.findById(request.getDepartmentId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Department not found with id: " + request.getDepartmentId()));
+            employee.setDepartment(department);
+        }
     }
 
     /**
@@ -190,6 +206,10 @@ public class EmployeeService {
 
         if (request.getEmail() != null && !request.getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
             throw new IllegalArgumentException("Invalid email format");
+        }
+
+        if (request.getDepartmentId() == null) {
+            throw new IllegalArgumentException("Department ID is mandatory");
         }
     }
 
