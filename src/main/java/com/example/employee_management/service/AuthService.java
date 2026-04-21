@@ -68,7 +68,8 @@ public class AuthService {
             try {
                 userRole = Role.valueOf(request.getRole().toUpperCase());
             } catch (IllegalArgumentException e) {
-                errors.put("role", "Invalid role: " + request.getRole() + ". Valid roles are: SYSTEM_ADMIN, USER_ADMIN, EMPLOYEE_VIEWER");
+                errors.put("role", "Invalid role: " + request.getRole()
+                        + ". Valid roles are: SYSTEM_ADMIN, USER_ADMIN, EMPLOYEE_VIEWER");
             }
         }
 

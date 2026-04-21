@@ -37,7 +37,8 @@ public class EmployeeController {
     // ✅ CREATE EMPLOYEE (ADMIN only)
     @PreAuthorize("hasAuthority('CREATE_EMPLOYEE')")
     @PostMapping
-    public ResponseEntity<Map<String, String>> createEmployee(@Valid @org.springframework.web.bind.annotation.RequestBody EmployeeRequest request) {
+    public ResponseEntity<Map<String, String>> createEmployee(
+            @Valid @org.springframework.web.bind.annotation.RequestBody EmployeeRequest request) {
 
         employeeService.createEmployee(request);
 
@@ -50,7 +51,7 @@ public class EmployeeController {
 
     // ✅ GET ALL (ADMIN & USER)
     @PreAuthorize("hasAuthority('VIEW_EMPLOYEE')")
-    @GetMapping({"", "/search"})
+    @GetMapping({ "", "/search" })
     public ResponseEntity<Page<Employee>> getAllEmployees(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -60,7 +61,8 @@ public class EmployeeController {
             @RequestParam(required = false) Double minSalary,
             @RequestParam(required = false) Double maxSalary) {
 
-        return ResponseEntity.ok(employeeService.getAllEmployees(page, size, sortBy, name, email, minSalary, maxSalary));
+        return ResponseEntity
+                .ok(employeeService.getAllEmployees(page, size, sortBy, name, email, minSalary, maxSalary));
     }
 
     // ✅ GET ALL (NON-PAGINATED)
@@ -97,7 +99,14 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.updateEmployee(id, request));
     }
 
+    @PutMapping("/{id}/salary")
+    @PreAuthorize("hasAuthority('UPDATE_EMPLOYEE') or @employeeService.isOwner(authentication.name, #id)")
+    public Employee updateSalary(
+            @PathVariable Long id,
+            @RequestParam Double salary) {
 
+        return employeeService.updateSalary(id, salary);
+    }
 
     // ✅ DELETE EMPLOYEE
     @PreAuthorize("hasAuthority('DELETE_EMPLOYEE') or (hasAuthority('VIEW_EMPLOYEE') and @employeeService.isOwner(authentication.name, #id))")
@@ -111,21 +120,7 @@ public class EmployeeController {
     }
 
     // ✅ UPLOAD PROFILE IMAGE
-    @Operation(
-        summary = "Upload Profile Image",
-        description = "Upload a profile image for an employee. The file will be stored on the local system and linked to the user account.",
-        requestBody = @RequestBody(
-            required = true,
-            content = @Content(
-                mediaType = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE,
-                schema = @Schema(type = "object"),
-                encoding = @Encoding(
-                    name = "file",
-                    contentType = "application/octet-stream"
-                )
-            )
-        )
-    )
+    @Operation(summary = "Upload Profile Image", description = "Upload a profile image for an employee. The file will be stored on the local system and linked to the user account.", requestBody = @RequestBody(required = true, content = @Content(mediaType = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE, schema = @Schema(type = "object"), encoding = @Encoding(name = "file", contentType = "application/octet-stream"))))
     @PreAuthorize("hasAuthority('UPDATE_EMPLOYEE') or (hasAuthority('VIEW_EMPLOYEE') and @employeeService.isOwner(authentication.name, #id))")
     @PostMapping(value = "/{id}/upload", consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Map<String, String>> uploadProfileImage(
@@ -144,8 +139,12 @@ public class EmployeeController {
         // Upload file and save link to user_profiles table
         UserProfile userProfile = userProfileService.uploadFileByUserEmail(employee.getEmail(), file);
 
+
+
+
         // Update users.profileImageId with the profile ID
         employeeService.updateProfileImage(id, userProfile.getId());
+
 
         Map<String, String> response = new HashMap<>();
         response.put("message", "Profile image uploaded successfully");
@@ -155,5 +154,10 @@ public class EmployeeController {
         response.put("status", "Profile image updated in user account");
 
         return ResponseEntity.ok(response);
+    }
+    @GetMapping("/department/{departmentId}/total-salary")
+    @PreAuthorize("hasAuthority('VIEW_EMPLOYEE')")
+    public Double getDepartmentSalary(@PathVariable("departmentId") Long id) {
+        return employeeService.getTotalSalary(id);
     }
 }

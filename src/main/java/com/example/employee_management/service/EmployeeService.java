@@ -3,6 +3,7 @@ package com.example.employee_management.service;
 import com.example.employee_management.dto.EmployeeRequest;
 import com.example.employee_management.dto.RegisterRequest;
 import com.example.employee_management.entity.Employee;
+import com.example.employee_management.event.EmployeeCreatedEvent;
 import com.example.employee_management.exception.ResourceNotFoundException;
 import com.example.employee_management.exception.DuplicateEmailException;
 import com.example.employee_management.repository.EmployeeRepository;
@@ -12,10 +13,12 @@ import com.example.employee_management.entity.Department;
 import com.example.employee_management.specification.EmployeeSpecification;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -35,6 +38,9 @@ public class EmployeeService {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private ApplicationEventPublisher publisher;
+
     // ✅ CREATE EMPLOYEE FROM EmployeeRequest
     public Employee createEmployee(EmployeeRequest request) {
 
@@ -43,13 +49,15 @@ public class EmployeeService {
         }
 
         Department department = departmentRepository.findById(request.getDepartmentId())
-                .orElseThrow(() -> new ResourceNotFoundException("Department not found with id: " + request.getDepartmentId()));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Department not found with id: " + request.getDepartmentId()));
 
         return createAndSaveEmployee(request.getFirstName(), request.getLastName(),
                 request.getEmail(), request.getSalary(), department);
     }
 
-    private Employee createAndSaveEmployee(String firstName, String lastName, String email, Double salary, Department department) {
+    private Employee createAndSaveEmployee(String firstName, String lastName, String email, Double salary,
+            Department department) {
         Employee employee = Employee.builder()
                 .firstName(firstName)
                 .lastName(lastName)
@@ -62,9 +70,7 @@ public class EmployeeService {
         Employee savedEmployee = employeeRepository.save(employee);
 
         // ✅ Send welcome email in background
-        emailService.sendWelcomeEmail(
-                savedEmployee.getEmail(),
-                savedEmployee.getFirstName() + " " + savedEmployee.getLastName());
+        publisher.publishEvent(new EmployeeCreatedEvent(savedEmployee));
 
         return savedEmployee;
     }
@@ -150,6 +156,22 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
+    @Transactional
+    public Employee updateSalary(Long id, Double newSalary) {
+
+        try {
+            Employee employee = employeeRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Employee not found"));
+
+            employee.setSalary(newSalary);
+
+            return employeeRepository.save(employee);
+
+        } catch (org.springframework.orm.ObjectOptimisticLockingFailureException e) {
+            throw new RuntimeException("Another user updated this record. Please try again.");
+        }
+    }
+
     /**
      * Updates employee fields from request DTO with proper validation and type
      * conversion.
@@ -183,7 +205,8 @@ public class EmployeeService {
         // Update department with validation
         if (request.getDepartmentId() != null) {
             Department department = departmentRepository.findById(request.getDepartmentId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Department not found with id: " + request.getDepartmentId()));
+                    .orElseThrow(() -> new ResourceNotFoundException(
+                            "Department not found with id: " + request.getDepartmentId()));
             employee.setDepartment(department);
         }
     }
@@ -234,14 +257,17 @@ public class EmployeeService {
                         "Employee profile not found or has been deleted."));
     }
 
+    public Double getTotalSalary(Long deptId) {
+        return employeeRepository.getTotalSalaryByDepartment(deptId);
+    }
 
-    
     // ✅ UPDATE PROFILE IMAGE IN USER TABLE
     @Transactional
     public void updateProfileImage(Long employeeId, Long fileId) {
         Employee employee = getEmployeeById(employeeId);
-        
-        // Find user by email and update their profileImageId (file ID from user_files table)
+
+        // Find user by email and update their profileImageId (file ID from user_files
+        // table)
         userRepository.findByEmail(employee.getEmail())
                 .ifPresent(user -> {
                     user.setProfileImageId(fileId);
@@ -254,6 +280,5 @@ public class EmployeeService {
         List<Employee> employees = employeeRepository.findAll();
         System.out.println("Monthly report generated for " + employees.size() + " employees");
     }
-
 
 }
