@@ -1,6 +1,7 @@
 package com.example.employee_management.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -12,15 +13,16 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@IdClass(EmployeeProjectId.class)
 public class EmployeeProject {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;

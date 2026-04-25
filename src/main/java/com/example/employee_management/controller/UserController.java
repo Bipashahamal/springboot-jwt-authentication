@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,6 +35,7 @@ public class UserController {
 
     // Upload file for a specific user
     @Operation(summary = "Upload Profile Image for User", description = "Upload a profile image for a specific user by user ID. The file will be stored in the database and the user's profileImageId will be updated.", requestBody = @RequestBody(required = true, content = @Content(mediaType = MediaType.MULTIPART_FORM_DATA_VALUE, schema = @Schema(type = "object"), encoding = @Encoding(name = "file", contentType = "application/octet-stream"))))
+    @PreAuthorize("hasAuthority('UPDATE_EMPLOYEE')")
     @PostMapping(value = "/{id}/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Map<String, Object>> uploadUserFile(
             @PathVariable("id") Long id,
@@ -67,6 +69,7 @@ public class UserController {
 
     // Get list of profiles for a specific user
     @GetMapping("/{id}/files")
+    @PreAuthorize("hasAuthority('VIEW_EMPLOYEE')")
     public ResponseEntity<List<Map<String, Object>>> getUserProfiles(@PathVariable("id") Long id) {
         List<UserProfile> files = userProfileService.getUserProfiles(id);
 
@@ -84,6 +87,7 @@ public class UserController {
 
     // Download/View file content
     @GetMapping("/files/{fileId}")
+    @PreAuthorize("hasAuthority('VIEW_EMPLOYEE')")
     public ResponseEntity<byte[]> getFile(@PathVariable("fileId") Long fileId) throws IOException {
         UserProfile userProfile = userProfileService.getFileById(fileId);
 

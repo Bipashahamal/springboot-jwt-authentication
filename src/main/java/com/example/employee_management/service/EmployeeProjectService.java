@@ -9,6 +9,8 @@ import com.example.employee_management.repository.EmployeeProjectRepository;
 import com.example.employee_management.repository.EmployeeRepository;
 import com.example.employee_management.repository.ProjectRepository;
 
+import java.time.LocalDate;
+
 @Service
 public class EmployeeProjectService {
 
@@ -33,6 +35,7 @@ public class EmployeeProjectService {
                 .employee(employee)
                 .project(project)
                 .role(role)
+                .assignedDate(LocalDate.now())
                 .build();
 
         return repository.save(ep);

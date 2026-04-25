@@ -1,6 +1,7 @@
 package com.example.employee_management.listener;
 
 import com.example.employee_management.event.EmployeeCreatedEvent;
+import com.example.employee_management.event.EmployeeUpdatedEvent;
 import com.example.employee_management.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
@@ -20,6 +21,17 @@ public class EmployeeEventListener {
         var emp = event.getEmployee();
 
         emailService.sendWelcomeEmail(
+                emp.getEmail(),
+                emp.getFirstName() + " " + emp.getLastName());
+    }
+
+    @Async
+    @EventListener
+    public void handleEmployeeUpdated(EmployeeUpdatedEvent event) {
+
+        var emp = event.getEmployee();
+
+        emailService.sendUpdateEmail(
                 emp.getEmail(),
                 emp.getFirstName() + " " + emp.getLastName());
     }

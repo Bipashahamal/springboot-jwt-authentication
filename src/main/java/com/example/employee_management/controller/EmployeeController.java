@@ -90,7 +90,7 @@ public class EmployeeController {
     }
 
     // ✅ UPDATE EMPLOYEE
-    @PreAuthorize("hasAuthority('UPDATE_EMPLOYEE') or (hasAuthority('VIEW_EMPLOYEE') and @employeeService.isOwner(authentication.name, #id))")
+    @PreAuthorize("hasAuthority('UPDATE_EMPLOYEE')")
     @PutMapping("/{id}")
     public ResponseEntity<Employee> updateEmployee(
             @PathVariable Long id,
@@ -100,7 +100,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}/salary")
-    @PreAuthorize("hasAuthority('UPDATE_EMPLOYEE') or @employeeService.isOwner(authentication.name, #id)")
+    @PreAuthorize("hasAuthority('UPDATE_EMPLOYEE')")
     public Employee updateSalary(
             @PathVariable Long id,
             @RequestParam Double salary) {
@@ -109,7 +109,7 @@ public class EmployeeController {
     }
 
     // ✅ DELETE EMPLOYEE
-    @PreAuthorize("hasAuthority('DELETE_EMPLOYEE') or (hasAuthority('VIEW_EMPLOYEE') and @employeeService.isOwner(authentication.name, #id))")
+    @PreAuthorize("hasAuthority('DELETE_EMPLOYEE')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteEmployee(
             @PathVariable Long id,
@@ -119,9 +119,17 @@ public class EmployeeController {
         return ResponseEntity.ok("Employee deleted successfully");
     }
 
+    // ✅ RESTORE EMPLOYEE
+    @PreAuthorize("hasAuthority('DELETE_EMPLOYEE')")
+    @PutMapping("/{id}/restore")
+    public ResponseEntity<String> restoreEmployee(@PathVariable Long id) {
+        employeeService.restoreEmployee(id);
+        return ResponseEntity.ok("Employee restored successfully");
+    }
+
     // ✅ UPLOAD PROFILE IMAGE
     @Operation(summary = "Upload Profile Image", description = "Upload a profile image for an employee. The file will be stored on the local system and linked to the user account.", requestBody = @RequestBody(required = true, content = @Content(mediaType = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE, schema = @Schema(type = "object"), encoding = @Encoding(name = "file", contentType = "application/octet-stream"))))
-    @PreAuthorize("hasAuthority('UPDATE_EMPLOYEE') or (hasAuthority('VIEW_EMPLOYEE') and @employeeService.isOwner(authentication.name, #id))")
+    @PreAuthorize("hasAuthority('UPDATE_EMPLOYEE')")
     @PostMapping(value = "/{id}/upload", consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Map<String, String>> uploadProfileImage(
             @PathVariable Long id,
@@ -157,7 +165,31 @@ public class EmployeeController {
     }
     @GetMapping("/department/{departmentId}/total-salary")
     @PreAuthorize("hasAuthority('VIEW_EMPLOYEE')")
-    public Double getDepartmentSalary(@PathVariable("departmentId") Long id) {
-        return employeeService.getTotalSalary(id);
+    public Map<String, Object> getDepartmentSalary(@PathVariable("departmentId") Long id) {
+        Double total = employeeService.getTotalSalary(id);
+        Map<String, Object> response = new HashMap<>();
+        response.put("departmentId", id);
+        response.put("totalSalary", total != null ? total.longValue() : 0);
+        return response;
+    }
+
+    // ✅ ADD ATTENDANCE
+    @PostMapping("/{id}/attendance")
+    @PreAuthorize("hasAuthority('CREATE_EMPLOYEE')")
+    public ResponseEntity<Map<String, String>> addAttendance(
+            @PathVariable Long id,
+            @RequestParam String status,
+            @RequestParam(required = false) java.time.LocalDate date) {
+        employeeService.addAttendance(id, status, null);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Attendance added successfully");
+        return ResponseEntity.ok(response);
+    }
+
+    // ✅ GET ATTENDANCE
+    @GetMapping("/{id}/attendance")
+    @PreAuthorize("hasAuthority('VIEW_EMPLOYEE')")
+    public ResponseEntity<List<com.example.employee_management.entity.Attendance>> getAttendance(@PathVariable Long id) {
+        return ResponseEntity.ok(employeeService.getAttendanceByEmployee(id));
     }
 }

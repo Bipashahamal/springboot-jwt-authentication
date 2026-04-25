@@ -17,6 +17,9 @@ public class DepartmentService {
 
     // Create department
     public Department createDepartment(DepartmentRequest request) {
+        if (departmentRepository.existsByName(request.getName())) {
+            throw new RuntimeException("Department with name '" + request.getName() + "' already exists");
+        }
         Department department = Department.builder()
                 .name(request.getName())
                 .description(request.getDescription())

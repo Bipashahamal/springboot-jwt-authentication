@@ -57,8 +57,37 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RegistrationException.class)
     public ResponseEntity<?> handleRegistrationException(RegistrationException ex) {
         String message = String.join(", ", ex.getErrors().values());
-        Map<String, Object> body = buildResponse(HttpStatus.BAD_REQUEST, message);
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(buildResponse(HttpStatus.BAD_REQUEST, message), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(EmployeeValidationException.class)
+    public ResponseEntity<?> handleEmployeeValidationException(EmployeeValidationException ex) {
+        String message = String.join(", ", ex.getErrors().values());
+        return new ResponseEntity<>(buildResponse(HttpStatus.BAD_REQUEST, message), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<?> handleRuntimeException(RuntimeException ex) {
+        String message = ex.getMessage();
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+
+        if (message != null && (message.contains("Invalid refresh token") || message.contains("Refresh token expired"))) {
+            status = HttpStatus.UNAUTHORIZED;
+        } else if (message != null && message.startsWith("No enum constant")) {
+            message = "Invalid role value. Valid roles are: SYSTEM_ADMIN, USER_ADMIN, EMPLOYEE_VIEWER, USER";
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return new ResponseEntity<>(buildResponse(status, message), status);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<?> handleIllegalArgument(IllegalArgumentException ex) {
+        String message = ex.getMessage();
+        if (message != null && message.startsWith("No enum constant")) {
+            message = "Invalid role value. Valid roles are: SYSTEM_ADMIN, USER_ADMIN, EMPLOYEE_VIEWER, USER";
+        }
+        return new ResponseEntity<>(buildResponse(HttpStatus.BAD_REQUEST, message), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)

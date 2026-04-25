@@ -37,14 +37,14 @@ public class AuthController {
         return authService.login(request);
     }
 
-    @PostMapping("/refresh")
-    public ResponseEntity<Map<String, Object>> refreshSession(@Valid @RequestBody RefreshTokenRequest request) {
+    @PostMapping("/accesstoken")
+    public ResponseEntity<Map<String, Object>> getAccessToken(@Valid @RequestBody RefreshTokenRequest request) {
         String newAccessToken = authService.refreshAccessToken(request.getRefreshToken());
 
         Map<String, Object> response = new LinkedHashMap<>();
         response.put("accessToken", newAccessToken);
         response.put("tokenType", "Bearer");
-        response.put("accesstokenexpiresIn", authService.getFormattedExpirationTime());
+        response.put("accesstokenexpiresIn", authService.getExpirationTime());
 
         return ResponseEntity.ok(response);
     }

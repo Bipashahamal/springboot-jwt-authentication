@@ -26,10 +26,13 @@ public class CustomUserDetailsService implements UserDetailsService {
         // Build authorities set
         Set<GrantedAuthority> authorities = new HashSet<>();
 
-        // Add role
+        // Add role WITHOUT ROLE_ prefix for @PreAuthorize("hasAuthority('...')")
+        authorities.add(new SimpleGrantedAuthority(user.getRole().name()));
+
+        // Also add ROLE_ prefix for security checks that need it
         authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
 
-        // Add permissions from role
+        // Add permissions from role WITHOUT prefix
         user.getRole().getPermissions().forEach(permission ->
                 authorities.add(new SimpleGrantedAuthority(permission.name()))
         );

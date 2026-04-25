@@ -3,13 +3,22 @@ package com.example.employee_management.service;
 import com.example.employee_management.dto.EmployeeRequest;
 import com.example.employee_management.dto.RegisterRequest;
 import com.example.employee_management.entity.Employee;
+import com.example.employee_management.dto.report.MonthlyHiringReportDto;
+import com.example.employee_management.dto.report.SalaryDistributionReportDto;
+import com.example.employee_management.dto.report.DepartmentEmployeeCountDto;
 import com.example.employee_management.event.EmployeeCreatedEvent;
+import com.example.employee_management.event.EmployeeUpdatedEvent;
 import com.example.employee_management.exception.ResourceNotFoundException;
 import com.example.employee_management.exception.DuplicateEmailException;
+import com.example.employee_management.exception.EmployeeValidationException;
 import com.example.employee_management.repository.EmployeeRepository;
 import com.example.employee_management.repository.UserRepository;
 import com.example.employee_management.repository.DepartmentRepository;
+import com.example.employee_management.repository.SalaryHistoryRepository;
+import com.example.employee_management.repository.AttendanceRepository;
 import com.example.employee_management.entity.Department;
+import com.example.employee_management.entity.SalaryHistory;
+import com.example.employee_management.entity.Attendance;
 import com.example.employee_management.specification.EmployeeSpecification;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +27,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import org.springframework.context.ApplicationEventPublisher;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EmployeeService {
@@ -36,6 +47,12 @@ public class EmployeeService {
     private DepartmentRepository departmentRepository;
 
     @Autowired
+    private SalaryHistoryRepository salaryHistoryRepository;
+
+    @Autowired
+    private AttendanceRepository attendanceRepository;
+
+    @Autowired
     private EmailService emailService;
 
     @Autowired
@@ -44,14 +61,23 @@ public class EmployeeService {
     // ✅ CREATE EMPLOYEE FROM EmployeeRequest
     public Employee createEmployee(EmployeeRequest request) {
 
-        if (employeeRepository.findByEmail(request.getEmail()).isPresent()) {
-            throw new DuplicateEmailException("Email already exists");
+        Map<String, String> errors = new LinkedHashMap<>();
+
+        if (request.getEmail() != null && employeeRepository.findByEmail(request.getEmail()).isPresent()) {
+            errors.put("email", "Email already exists");
         }
 
-        Department department = departmentRepository.findById(request.getDepartmentId())
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "Department not found with id: " + request.getDepartmentId()));
+        if (request.getDepartmentId() == null) {
+            errors.put("departmentId", "Department ID is mandatory");
+        } else if (!departmentRepository.existsById(request.getDepartmentId())) {
+            errors.put("departmentId", "Department not found with id: " + request.getDepartmentId());
+        }
 
+        if (!errors.isEmpty()) {
+            throw new EmployeeValidationException(errors);
+        }
+
+        Department department = departmentRepository.findById(request.getDepartmentId()).get();
         return createAndSaveEmployee(request.getFirstName(), request.getLastName(),
                 request.getEmail(), request.getSalary(), department);
     }
@@ -69,7 +95,15 @@ public class EmployeeService {
 
         Employee savedEmployee = employeeRepository.save(employee);
 
-        // ✅ Send welcome email in background
+        if (salary != null) {
+            SalaryHistory history = SalaryHistory.builder()
+                    .salary(salary)
+                    .effectiveFrom(LocalDate.now())
+                    .employee(savedEmployee)
+                    .build();
+            salaryHistoryRepository.save(history);
+        }
+
         publisher.publishEvent(new EmployeeCreatedEvent(savedEmployee));
 
         return savedEmployee;
@@ -125,9 +159,10 @@ public class EmployeeService {
         }
     }
 
-    // ✅ GET EMPLOYEE BY ID
+    // ✅ GET EMPLOYEE BY ID (excludes soft deleted)
     public Employee getEmployeeById(Long id) {
         return employeeRepository.findById(id)
+                .filter(e -> !e.isDeleted())
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + id));
     }
 
@@ -137,12 +172,23 @@ public class EmployeeService {
         // Validate input
         validateEmployeeRequest(request);
 
-        // Fetch employee with pessimistic lock to prevent concurrent updates
-        Employee employee = getEmployeeById(id);
+        // Fetch employee
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + id));
+
+        // Re-fetch department to avoid lazy loading issues
+        Department department = null;
+        if (request.getDepartmentId() != null && request.getDepartmentId() > 0) {
+            department = departmentRepository.findById(request.getDepartmentId())
+                    .orElseThrow(() -> new ResourceNotFoundException(
+                            "Department not found with id: " + request.getDepartmentId()));
+        }
 
         // Check for email uniqueness only if email is being changed
-        if (!employee.getEmail().equals(request.getEmail())) {
-            employeeRepository.findByEmail(request.getEmail())
+        String currentEmail = employee.getEmail();
+        String newEmail = request.getEmail();
+        if (newEmail != null && !newEmail.isBlank() && !newEmail.equals(currentEmail)) {
+            employeeRepository.findByEmail(newEmail)
                     .ifPresent(existingEmployee -> {
                         if (!existingEmployee.getId().equals(id)) {
                             throw new DuplicateEmailException("Email already exists");
@@ -151,9 +197,13 @@ public class EmployeeService {
         }
 
         // Update employee fields using a dedicated method for better maintainability
-        updateEmployeeFields(employee, request);
+        updateEmployeeFields(employee, request, department);
 
-        return employeeRepository.save(employee);
+        Employee updatedEmployee = employeeRepository.save(employee);
+        
+        publisher.publishEvent(new EmployeeUpdatedEvent(updatedEmployee));
+        
+        return updatedEmployee;
     }
 
     @Transactional
@@ -163,9 +213,29 @@ public class EmployeeService {
             Employee employee = employeeRepository.findById(id)
                     .orElseThrow(() -> new RuntimeException("Employee not found"));
 
+            Double oldSalary = employee.getSalary();
+
+            if (oldSalary != null && !oldSalary.equals(newSalary)) {
+                List<SalaryHistory> histories = salaryHistoryRepository.findByEmployeeIdOrderByEffectiveFromDesc(id);
+                if (!histories.isEmpty()) {
+                    SalaryHistory lastHistory = histories.get(0);
+                    lastHistory.setEffectiveTo(LocalDate.now());
+                    salaryHistoryRepository.save(lastHistory);
+                }
+
+                SalaryHistory history = SalaryHistory.builder()
+                        .salary(newSalary)
+                        .effectiveFrom(LocalDate.now())
+                        .employee(employee)
+                        .build();
+                salaryHistoryRepository.save(history);
+            }
+
             employee.setSalary(newSalary);
 
-            return employeeRepository.save(employee);
+            Employee updatedEmployee = employeeRepository.save(employee);
+            publisher.publishEvent(new EmployeeUpdatedEvent(updatedEmployee));
+            return updatedEmployee;
 
         } catch (org.springframework.orm.ObjectOptimisticLockingFailureException e) {
             throw new RuntimeException("Another user updated this record. Please try again.");
@@ -183,7 +253,7 @@ public class EmployeeService {
      * @param employee The employee entity to update
      * @param request  The request DTO containing new values
      */
-    private void updateEmployeeFields(Employee employee, EmployeeRequest request) {
+    private void updateEmployeeFields(Employee employee, EmployeeRequest request, Department department) {
         // Update basic fields with null safety
         if (request.getFirstName() != null && !request.getFirstName().isBlank()) {
             employee.setFirstName(request.getFirstName().trim());
@@ -202,11 +272,8 @@ public class EmployeeService {
             employee.setSalary(request.getSalary());
         }
 
-        // Update department with validation
-        if (request.getDepartmentId() != null) {
-            Department department = departmentRepository.findById(request.getDepartmentId())
-                    .orElseThrow(() -> new ResourceNotFoundException(
-                            "Department not found with id: " + request.getDepartmentId()));
+        // Update department if provided
+        if (department != null) {
             employee.setDepartment(department);
         }
     }
@@ -236,11 +303,19 @@ public class EmployeeService {
         }
     }
 
-    // ✅ DELETE EMPLOYEE
-    // ✅ DELETE EMPLOYEE (HARD DELETE)
+    // ✅ DELETE EMPLOYEE (SOFT DELETE)
     public void deleteEmployee(Long id) {
         Employee employee = getEmployeeById(id);
-        employeeRepository.delete(employee);
+        employee.setDeleted(true);
+        employeeRepository.save(employee);
+    }
+
+    // ✅ RESTORE EMPLOYEE (restore soft-deleted employee)
+    public void restoreEmployee(Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + id));
+        employee.setDeleted(false);
+        employeeRepository.save(employee);
     }
 
     // ✅ CHECK OWNER
@@ -279,6 +354,64 @@ public class EmployeeService {
     public void generateMonthlyReport() {
         List<Employee> employees = employeeRepository.findAll();
         System.out.println("Monthly report generated for " + employees.size() + " employees");
+    }
+
+    // ✅ REPORTING APIS
+    public List<MonthlyHiringReportDto> getMonthlyHiringReport() {
+        List<Object[]> results = employeeRepository.getMonthlyHiringReport();
+        return results.stream()
+                .filter(row -> row[0] != null && row[1] != null && row[2] != null)
+                .map(row -> new MonthlyHiringReportDto(
+                        ((Number) row[0]).intValue(),
+                        ((Number) row[1]).intValue(),
+                        ((Number) row[2]).longValue()))
+                .toList();
+    }
+
+    public List<SalaryDistributionReportDto> getSalaryDistributionReport() {
+        List<Object[]> results = employeeRepository.getSalaryDistributionReport();
+        return results.stream()
+                .filter(row -> row[0] != null)
+                .map(row -> new SalaryDistributionReportDto(
+                        (String) row[0],
+                        toDouble(row[1]),
+                        toDouble(row[2]),
+                        toDouble(row[3]),
+                        toDouble(row[4]),
+                        row[5] != null ? ((Number) row[5]).longValue() : 0L))
+                .toList();
+    }
+
+    public List<DepartmentEmployeeCountDto> getDepartmentEmployeeCountReport() {
+        List<Object[]> results = employeeRepository.getDepartmentEmployeeCountReport();
+        return results.stream()
+                .filter(row -> row[0] != null && row[1] != null)
+                .map(row -> new DepartmentEmployeeCountDto(
+                        (String) row[0],
+                        ((Number) row[1]).longValue()))
+                .toList();
+    }
+
+    private Double toDouble(Object obj) {
+        if (obj == null) return 0.0;
+        return ((Number) obj).doubleValue();
+    }
+
+    // ✅ ADD ATTENDANCE
+    public Attendance addAttendance(Long employeeId, String status, LocalDate date) {
+        Employee employee = getEmployeeById(employeeId);
+        Attendance attendance = Attendance.builder()
+                .employee(employee)
+                .status(status)
+                .date(date != null ? date : LocalDate.now())
+                .build();
+        return attendanceRepository.save(attendance);
+    }
+
+    // ✅ GET ATTENDANCE BY EMPLOYEE
+    public List<Attendance> getAttendanceByEmployee(Long employeeId) {
+        Employee employee = getEmployeeById(employeeId);
+        return attendanceRepository.findByEmployee(employee);
     }
 
 }

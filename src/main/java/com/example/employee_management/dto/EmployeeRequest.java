@@ -14,6 +14,7 @@ public class EmployeeRequest {
     @Email
     private String email;
 
+
     @Positive(message = "Salary must be positive")
     private Double salary;
 

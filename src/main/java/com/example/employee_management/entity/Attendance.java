@@ -1,6 +1,7 @@
 package com.example.employee_management.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -25,6 +26,7 @@ public class Attendance {
     private String status; // PRESENT / ABSENT / LEAVE
 
     // 🔗 Many Attendance → One Employee
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;

@@ -13,6 +13,9 @@ public class ProjectService {
     private ProjectRepository projectRepository;
 
     public Project createProject(Project project) {
+        if (projectRepository.existsByName(project.getName())) {
+            throw new RuntimeException("Project with name '" + project.getName() + "' already exists");
+        }
         return projectRepository.save(project);
     }
 

@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "d0e1f203-1a2f-082d-72a2-b28100818b9c",
     "name": "Employee Management API",
-    "description": "Complete collection for Employee Management System APIs with JWT Authentication.\n\n🔐 AUTHENTICATION:\n- Register users (automatically creates employee profile)\n- Login to get JWT token\n- Refresh token to extend session\n- Logout to invalidate refresh token\n- Use Bearer token for secured endpoints\n\n📱 REGISTRATION REQUIREMENTS:\n- Name: Minimum 3 characters\n- Email: Valid email format\n- Password: Minimum 6 characters\n- Phone Number: Exactly 10 digits (optional)\n- Role: SYSTEM_ADMIN, USER_ADMIN, or EMPLOYEE_VIEWER\n\n👤 EMPLOYEE MANAGEMENT:\n- Paginated employee listing\n- Get own profile (/me)\n- CRUD operations with role-based access\n- Restore soft-deleted employees\n- Search employees by name or department\n- Upload profile images (stores file ID)\n- SYSTEM_ADMIN: Full access\n- USER_ADMIN: Create, Update, View access\n- EMPLOYEE_VIEWER: Read access + own profile management\n\n📝 CREATE EMPLOYEE REQUIREMENTS:\n- firstName: Required, string\n- lastName: Optional, string\n- email: Required, valid email format\n- department: Required, string (department name)\n- salary: Required, positive number\n\n🏢 DEPARTMENT MANAGEMENT:\n- Create, Read, Update departments\n- Assign employees to departments\n\n📁 FILE MANAGEMENT:\n- Upload profile images for users\n- Get all files metadata\n- Download specific files\n\n🌐 PUBLIC ENDPOINTS:\n- Health check (/api/public/health)\n- API information (/api/public/info)\n\n📧 FEATURES:\n- Async welcome email sending\n- Duplicate prevention (email & phone)\n- Input validation\n- Comprehensive error handling\n- File upload with automatic profile linking",
+    "description": "Complete collection for Employee Management System APIs with JWT Authentication.\n\n🔐 AUTHENTICATION:\n- Register users (automatically creates employee profile)\n- Login to get JWT token\n- Refresh token to extend session\n- Logout to invalidate refresh token\n- Use Bearer token for secured endpoints\n\n📱 REGISTRATION REQUIREMENTS:\n- Name: Minimum 3 characters\n- Email: Valid email format\n- Password: Minimum 6 characters\n- Phone Number: Exactly 10 digits (optional)\n- Role: SYSTEM_ADMIN, USER_ADMIN, or EMPLOYEE_VIEWER\n\n👤 EMPLOYEE MANAGEMENT:\n- Paginated employee listing\n- Get own profile (/me)\n- CRUD operations with role-based access\n- Search employees by name/email/salary\n- Upload profile images\n- Update salary directly\n- Get department total salary\n- SYSTEM_ADMIN: Full access\n- USER_ADMIN: Create, Update, View access\n- EMPLOYEE_VIEWER: Read access + own profile management\n\n📝 CREATE EMPLOYEE REQUIREMENTS:\n- firstName: Required, string\n- lastName: Required, string\n- email: Required, valid email format\n- departmentId: Required, positive number\n- salary: Required, positive number\n\n🏢 DEPARTMENT MANAGEMENT:\n- Create, Read, Update departments\n\n📊 REPORTS:\n- Monthly hiring report\n- Salary distribution report\n- Department employee count report\n\n📁 PROJECT MANAGEMENT:\n- Create/Get projects\n- Assign employees to projects\n\n📁 FILE MANAGEMENT:\n- Upload profile images for users\n- Get all files metadata\n- Download specific files\n\n🌐 PUBLIC ENDPOINTS:\n- Health check (/api/public/health)\n- API information (/api/public/info)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "auth": {
@@ -144,7 +144,7 @@
           "response": []
         },
         {
-          "name": "Refresh Token",
+          "name": "Access Token",
           "event": [
             {
               "listen": "test",
@@ -172,14 +172,14 @@
               "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
             },
             "url": {
-              "raw": "{{base_url}}/api/auth/refresh",
+              "raw": "{{base_url}}/api/auth/accesstoken",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
                 "api",
                 "auth",
-                "refresh"
+                "accesstoken"
               ]
             }
           },
@@ -255,6 +255,25 @@
           "response": []
         },
         {
+          "name": "GET - All Employees (List)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/all",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "GET - My Profile",
           "request": {
             "method": "GET",
@@ -304,7 +323,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"firstName\": \"Hina\",\n    \"lastName\": \"Hina\",\n    \"email\": \"hina@example.com\",\n    \"departmentId\": 1,\n    \"salary\": 75050.00\n}"
+              "raw": "{\n    \"firstName\": \"Hina\",\n    \"lastName\": \"Patel\",\n    \"email\": \"hina@example.com\",\n    \"departmentId\": 1,\n    \"salary\": 75000.00\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/employees",
@@ -331,7 +350,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"firstName\": \"Alice\",\n    \"lastName\": \"Smith\",\n    \"email\": \"alice.smith.updated@example.com\",\n    \"departmentId\": 1,\n    \"salary\": 85000.00\n}"
+              "raw": "{\n    \"firstName\": \"Alice\",\n    \"lastName\": \"Smith\",\n    \"email\": \"alice.smith@example.com\",\n    \"departmentId\": 1,\n    \"salary\": 85000.00\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/employees/1",
@@ -348,7 +367,34 @@
           "response": []
         },
         {
-          "name": "DELETE - Delete Employee (Hard Delete)",
+          "name": "PUT - Update Employee Salary",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/1/salary?salary=90000",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "1",
+                "salary"
+              ],
+              "query": [
+                {
+                  "key": "salary",
+                  "value": "90000",
+                  "description": "New salary amount"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE - Delete Employee",
           "request": {
             "method": "DELETE",
             "header": [],
@@ -361,6 +407,72 @@
                 "api",
                 "employees",
                 "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT - Restore Employee",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/1/restore",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "1",
+                "restore"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Add Attendance",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/1/attendance?status=PRESENT",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "1",
+                "attendance"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "PRESENT"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Attendance",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/1/attendance",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "1",
+                "attendance"
               ]
             }
           },
@@ -388,11 +500,74 @@
                   "description": "Search by first or last name"
                 },
                 {
-                  "key": "department",
-                  "value": "Engineering",
-                  "description": "Filter by department",
+                  "key": "email",
+                  "value": "",
+                  "description": "Filter by email",
+                  "disabled": true
+                },
+                {
+                  "key": "minSalary",
+                  "value": "",
+                  "description": "Filter by minimum salary",
+                  "disabled": true
+                },
+                {
+                  "key": "maxSalary",
+                  "value": "",
+                  "description": "Filter by maximum salary",
                   "disabled": true
                 }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Department Total Salary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/department/1/total-salary",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "department",
+                "1",
+                "total-salary"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Upload Profile Image",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/employees/1/upload",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "1",
+                "upload"
               ]
             }
           },
@@ -434,7 +609,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"name\": \"IT & Support\",\n    \"description\": \"IT + Support Teams\"\n}"
+              "raw": "{\n    \"name\": \"Engineering\",\n    \"description\": \"Engineering Department\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/departments",
@@ -480,8 +655,157 @@
       ]
     },
     {
+      "name": "📊 Reports",
+      "description": "Reporting endpoints for analytics.",
+      "item": [
+        {
+          "name": "GET - Monthly Hiring Report",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/reports/monthly-hiring",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports",
+                "monthly-hiring"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Salary Distribution Report",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/reports/salary-distribution",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports",
+                "salary-distribution"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Department Employee Count Report",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/reports/department-employee-count",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports",
+                "department-employee-count"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "📁 Projects",
+      "description": "Project management endpoints.",
+      "item": [
+        {
+          "name": "GET - All Projects",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/projects",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "projects"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Create Project",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Website Redesign\",\n    \"description\": \"Company website redesign project\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/projects",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "projects"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Assign Employee to Project",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employee-project?employeeId=1&projectId=1&role=Developer",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employee-project"
+              ],
+              "query": [
+                {
+                  "key": "employeeId",
+                  "value": "1",
+                  "description": "Employee ID"
+                },
+                {
+                  "key": "projectId",
+                  "value": "1",
+                  "description": "Project ID"
+                },
+                {
+                  "key": "role",
+                  "value": "Developer",
+                  "description": "Role in project"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "📁 User Files",
-      "description": "File upload and management endpoints for user profile images. Files are stored with IDs in user_files table.\n\n📌 USER-SPECIFIC FILES:\n- GET /api/users/{id}/files - Fetches ALL files belonging to a specific user\n- GET /api/users/files/{fileId} - Fetches ONE specific file\n\n📌 GLOBAL FILES:\n- GET /api/files - Fetches ALL files metadata (global)\n- GET /api/files/{fileId} - Fetches ONE specific file (global)",
+      "description": "File upload and management endpoints for user profile images.",
       "item": [
         {
           "name": "POST - Upload User Profile Image",
@@ -514,7 +838,7 @@
           "response": []
         },
         {
-          "name": "GET - User's All Files (Specific User)",
+          "name": "GET - User's All Files",
           "request": {
             "method": "GET",
             "header": [],
@@ -547,6 +871,68 @@
                 "api",
                 "users",
                 "files",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - All Files Metadata",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/files",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "files"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Download Specific File",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/files/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "files",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🗑️ Users (Admin)",
+      "description": "User management endpoints (Admin only).",
+      "item": [
+        {
+          "name": "DELETE - Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
                 "1"
               ]
             }

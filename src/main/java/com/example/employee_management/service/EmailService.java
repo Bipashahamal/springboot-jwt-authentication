@@ -34,4 +34,24 @@ public class EmailService {
             System.out.println("Email sending failed: " + e.getMessage());
         }
     }
+    @Async
+    public void sendUpdateEmail(String toEmail, String name) {
+
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+
+            message.setTo(toEmail);
+            message.setSubject("Profile Update Confirmation");
+
+            message.setText(
+                    "Hello " + name + ",\n\n" +
+                    "Your profile has been updated successfully.\n\n" +
+                    "Regards,\nTeam");
+
+            mailSender.send(message);
+
+        } catch (Exception e) {
+            System.out.println("Email sending failed: " + e.getMessage());
+        }
+    }
 }

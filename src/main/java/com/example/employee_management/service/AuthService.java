@@ -62,14 +62,21 @@ public class AuthService {
             errors.put("phoneNumber", "Phone number already exists!");
         }
 
-        // Determine Role
+// Determine Role
         Role userRole = Role.EMPLOYEE_VIEWER;
         if (request.getRole() != null) {
-            try {
-                userRole = Role.valueOf(request.getRole().toUpperCase());
-            } catch (IllegalArgumentException e) {
+            String roleUpper = request.getRole().toUpperCase();
+            boolean validRole = false;
+            for (Role r : Role.values()) {
+                if (r.name().equals(roleUpper)) {
+                    validRole = true;
+                    userRole = r;
+                    break;
+                }
+            }
+            if (!validRole) {
                 errors.put("role", "Invalid role: " + request.getRole()
-                        + ". Valid roles are: SYSTEM_ADMIN, USER_ADMIN, EMPLOYEE_VIEWER");
+                        + ". Valid roles are: SYSTEM_ADMIN, USER_ADMIN, EMPLOYEE_VIEWER, USER");
             }
         }
 
